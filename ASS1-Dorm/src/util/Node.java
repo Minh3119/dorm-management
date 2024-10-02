@@ -4,18 +4,18 @@
  */
 package util;
 
-public class Node {
-    int info;
+public class Node<T> {
+    T info;
     Node next;
 
     public Node() {}
 
-    public Node(int info, Node next) {
+    public Node(T info, Node next) {
         this.info = info;
         this.next = next;
     }
 
-    public Node(int info) {
+    public Node(T info) {
         this(info, null);
     }
 }
