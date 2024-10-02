@@ -4,9 +4,9 @@
  */
 package util;
 
-public class MyLinkedList {
-    Node head;
-    Node tail;
+public class MyLinkedList <T> {
+    Node<T> head;
+    Node<T> tail;
 
     public MyLinkedList() {
     }
@@ -20,8 +20,8 @@ public class MyLinkedList {
         tail = null;
     }
     
-    void addLast(int x) {
-        Node newNode = new Node(x);
+    void addLast(T x) {
+        Node<T> newNode = new Node(x);
         
         if (isEmpty()) {
             head = tail = newNode;
@@ -32,18 +32,18 @@ public class MyLinkedList {
         tail = newNode;
     }
     
-    void addManyLast(int[] a) {
+    void addManyLast(T[] a) {
         for (int i=0; i<a.length; i++) {
             addLast(a[i]);
         }
     }
     
-    void visit(Node p) {
+    void visit(Node<T> p) {
         System.out.println(p.info + " ");
     }
     
     void traverse() {
-        Node p = head;
+        Node<T> p = head;
         for (;p != null;) {
             visit(p);
             p = p.next;
@@ -51,8 +51,8 @@ public class MyLinkedList {
         System.out.println("");
     }
     
-    void addFirst(int x) {
-        Node newNode = new Node(x);
+    void addFirst(T x) {
+        Node<T> newNode = new Node(x);
         
         if (isEmpty()) {
             head = newNode;
@@ -100,22 +100,22 @@ public class MyLinkedList {
         System.out.println("Tail = " + tail);
     }
     
-    void addManyFirst(int[] a) {
+    void addManyFirst(T[] a) {
         for (int i=a.length-1; i>=0; i--) {
             addFirst(a[i]);
         }
     }
     
     // CQ2_1
-    Node getFirst() {
+    Node<T> getFirst() {
         return this.head;
     }
     
-    Node getLast() {
+    Node<T> getLast() {
         return this.tail;
     }
     
-    Node get(int x) {
+    Node<T> get(T x) {
         Node p = this.head;
         while (p != null) {
             if (p.info == x) {
@@ -126,12 +126,12 @@ public class MyLinkedList {
         return null;
     }
     
-    Node find(Node p) {
+    Node<T> find(Node<T> p) {
         if (p == null) {
             return null;
         }
         
-        Node a = this.head;
+        Node<T> a = this.head;
         while (a != null) {
             if (a.info == p.info) {
                 return a;
@@ -141,19 +141,19 @@ public class MyLinkedList {
         return null;
     }
     
-    Node getNext(Node p) {
+    Node<T> getNext(Node<T> p) {
         if (p != null) {
             return p.next;
         }
         return null;
     }
     
-    Node getPrev(Node p) {
+    Node<T> getPrev(Node<T> p) {
         if (p == null) { 
             return null;
         }
         
-        Node a = head;
+        Node<T> a = head;
         while (a != null) {
             if (a.next == p) {
                 return a;
@@ -174,7 +174,7 @@ public class MyLinkedList {
         return i;
     }
     
-    Node getByIndex(int index) {
+    Node<T> getByIndex(int index) {
         Node p = head;
         int i = 0;
         while (p != null) {
@@ -187,7 +187,7 @@ public class MyLinkedList {
         return null;
     }
     
-    void insertAfter(Node p, int x) {
+    void insertAfter(Node<T> p, T x) {
         Node n = find(p);
         
         if (n == null) {
@@ -203,7 +203,7 @@ public class MyLinkedList {
         }
     }
     
-    void insertBefore(Node p, int x) {
+    void insertBefore(Node<T> p, T x) {
         if (p!=null && p == head) {
             addFirst(x);
             return;
@@ -220,7 +220,7 @@ public class MyLinkedList {
         prev.next = newNode;
     }
     
-    void insert(int index, int x) {
+    void insert(int index, T x) {
         Node n = getByIndex(index);
         
         if (n == null) {
@@ -231,7 +231,7 @@ public class MyLinkedList {
     }
     
     //CQ2_3
-    void remove(Node p) {
+    void remove(Node<T> p) {
         if (p == null) { 
             return;
         }
@@ -248,23 +248,24 @@ public class MyLinkedList {
         }
     }
     
+    // remove by index
     void remove(int x) {
-        Node n = getByIndex(x);
+        Node<T> n = getByIndex(x);
         remove(n);
     }
     
-    void removeAfter(Node p) {
-        Node n = find(p);
+    void removeAfter(Node<T> p) {
+        Node<T> n = find(p);
         
-        if (n == null) { 
+        if (n == null) {
             return;
         }
         
         remove(getNext(n));
     }
     
-    void removeBefore(Node p) {
-        Node n = find(p);
+    void removeBefore(Node<T> p) {
+        Node<T> n = find(p);
         
         if (n == null) { 
             return;
@@ -273,7 +274,7 @@ public class MyLinkedList {
         remove(getPrev(n));
     }
     
-    void set(Node p, int x) {
+    void set(Node<T> p, T x) {
         Node n = find(p);
         
         if (n == null) { 
@@ -283,76 +284,76 @@ public class MyLinkedList {
         n.info = x;
     }
     
-    Node max() {
-        Node p = head;
-        Node m = p;
-        while (p != null) {
-            if (p.info > m.info) {
-                m = p;
-            }
-            p = p.next;
-        }
-        return m;
-    }
+//    Node<T> max() {
+//        Node<T> p = head;
+//        Node<T> m = p;
+//        while (p != null) {
+//            if (p.info > m.info) {
+//                m = p;
+//            }
+//            p = p.next;
+//        }
+//        return m;
+//    }
     
-    Node secondMax() {
-        Node max = max();
-        Node p = head;
-        Node secondMax = null;
-
-        // Traverse the list to find the second maximum
-        while (p != null) {
-            if (p.info < max.info) {
-                if (secondMax == null || p.info > secondMax.info) {
-                    secondMax = p;
-                }
-            }
-            p = p.next;
-        }
-
-        return secondMax;
-    }
+//    Node<T> secondMax() {
+//        Node max = max();
+//        Node p = head;
+//        Node secondMax = null;
+//
+//        // Traverse the list to find the second maximum
+//        while (p != null) {
+//            if (p.info < max.info) {
+//                if (secondMax == null || p.info > secondMax.info) {
+//                    secondMax = p;
+//                }
+//            }
+//            p = p.next;
+//        }
+//
+//        return secondMax;
+//    }
 
     
-    void swap(Node p, Node q) {
-        int temp = p.info;
+    void swap(Node<T> p, Node<T> q) {
+        T temp = p.info;
         p.info = q.info;
         q.info = temp;
     }
     
-    void sort() {
-        Node p = head;
-        Node q;
-        while (p != null) {
-            q = p.next;
-            while (q != null) {
-                if (p.info > q.info) {
-                    swap(p, q);
-                }
-                q = q.next;
-            }
-            p = p.next;
-        }
-    }
-    
-    void sort(Node p, Node q) {
-        while (p != null) {
-            Node t = p.next;
-            while (t != null) {
-                if (t == q.next) {
-                    return;
-                }
-                if (p.info > t.info) {
-                    swap(p, t);
-                }
-                t = t.next;
-            }
-            p = p.next;
-        }
-    }
+//    void sort() {
+//        Node p = head;
+//        Node q;
+//        while (p != null) {
+//            q = p.next;
+//            while (q != null) {
+//                if (p.info > q.info) {
+//                    swap(p, q);
+//                }
+//                q = q.next;
+//            }
+//            p = p.next;
+//        }
+//    }
+//    
+//    void sort(Node p, Node q) {
+//        while (p != null) {
+//            Node t = p.next;
+//            while (t != null) {
+//                if (t == q.next) {
+//                    return;
+//                }
+//                if (p.info > t.info) {
+//                    swap(p, t);
+//                }
+//                t = t.next;
+//            }
+//            p = p.next;
+//        }
+//    }
     
     void reverse() {
-        Node next, current, previous;
+        Node<T> next, current, previous;
         current = head;
         previous = null;
         
