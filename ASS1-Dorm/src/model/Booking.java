@@ -3,7 +3,7 @@
  * @author Group 4
  */
 
-package dto;
+package model;
 
 import java.time.LocalDate;
 

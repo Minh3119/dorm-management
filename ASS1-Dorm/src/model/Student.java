@@ -2,7 +2,7 @@
  *
  * @author Group 4
  */
-package dto;
+package model;
 
 public class Student {
     
