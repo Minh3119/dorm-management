@@ -32,7 +32,7 @@ public class MyLinkedList <T> {
         tail = newNode;
     }
     
-    void addManyLast(T[] a) {
+    public void addManyLast(T[] a) {
         for (int i=0; i<a.length; i++) {
             addLast(a[i]);
         }
@@ -42,7 +42,7 @@ public class MyLinkedList <T> {
         System.out.println(p.info + " ");
     }
     
-    void traverse() {
+    public void traverse() {
         Node<T> p = head;
         for (;p != null;) {
             visit(p);
@@ -51,7 +51,7 @@ public class MyLinkedList <T> {
         System.out.println("");
     }
     
-    void addFirst(T x) {
+    protected void addFirst(T x) {
         Node<T> newNode = new Node(x);
         
         if (isEmpty()) {
@@ -63,7 +63,7 @@ public class MyLinkedList <T> {
         }       
     }
     
-    void removeFirst() {
+    public void removeFirst() {
         if (!isEmpty()){
             if (head == tail) {
                 clear();
@@ -76,7 +76,7 @@ public class MyLinkedList <T> {
         }
     }
     
-    void removeLast() {
+    public void removeLast() {
         if (isEmpty()) {
             return;
         }
@@ -95,27 +95,21 @@ public class MyLinkedList <T> {
         tail = p;
     }
     
-    void printInfo() {
-        System.out.println("Head = " + head);
-        System.out.println("Tail = " + tail);
-    }
-    
-    void addManyFirst(T[] a) {
+    public void addManyFirst(T[] a) {
         for (int i=a.length-1; i>=0; i--) {
             addFirst(a[i]);
         }
     }
-    
-    // CQ2_1
-    Node<T> getFirst() {
+
+    public Node<T> getFirst() {
         return this.head;
     }
     
-    Node<T> getLast() {
+    public Node<T> getLast() {
         return this.tail;
     }
     
-    Node<T> get(T x) {
+    public Node<T> get(T x) {
         Node p = this.head;
         while (p != null) {
             if (p.info == x) {
@@ -126,7 +120,7 @@ public class MyLinkedList <T> {
         return null;
     }
     
-    Node<T> find(Node<T> p) {
+    public Node<T> find(Node<T> p) {
         if (p == null) {
             return null;
         }
@@ -141,14 +135,14 @@ public class MyLinkedList <T> {
         return null;
     }
     
-    Node<T> getNext(Node<T> p) {
+    public Node<T> getNext(Node<T> p) {
         if (p != null) {
             return p.next;
         }
         return null;
     }
     
-    Node<T> getPrev(Node<T> p) {
+    public Node<T> getPrev(Node<T> p) {
         if (p == null) { 
             return null;
         }
@@ -162,9 +156,8 @@ public class MyLinkedList <T> {
         }
         return null;
     }
-    
-    // CQ2_2
-    int size() {
+
+    public int size() {
         int i = 0;
         Node n = head;
         while (n != null) {
@@ -174,7 +167,7 @@ public class MyLinkedList <T> {
         return i;
     }
     
-    Node<T> getByIndex(int index) {
+    public Node<T> getByIndex(int index) {
         Node p = head;
         int i = 0;
         while (p != null) {
@@ -187,7 +180,7 @@ public class MyLinkedList <T> {
         return null;
     }
     
-    void insertAfter(Node<T> p, T x) {
+    public void insertAfter(Node<T> p, T x) {
         Node n = find(p);
         
         if (n == null) {
@@ -203,7 +196,7 @@ public class MyLinkedList <T> {
         }
     }
     
-    void insertBefore(Node<T> p, T x) {
+    public void insertBefore(Node<T> p, T x) {
         if (p!=null && p == head) {
             addFirst(x);
             return;
@@ -220,7 +213,7 @@ public class MyLinkedList <T> {
         prev.next = newNode;
     }
     
-    void insert(int index, T x) {
+    public void insert(int index, T x) {
         Node n = getByIndex(index);
         
         if (n == null) {
@@ -229,9 +222,8 @@ public class MyLinkedList <T> {
         
         insertBefore(n, x);
     }
-    
-    //CQ2_3
-    void remove(Node<T> p) {
+
+    public void remove(Node<T> p) {
         if (p == null) { 
             return;
         }
@@ -249,12 +241,12 @@ public class MyLinkedList <T> {
     }
     
     // remove by index
-    void remove(int x) {
+    public void remove(int x) {
         Node<T> n = getByIndex(x);
         remove(n);
     }
     
-    void removeAfter(Node<T> p) {
+    public void removeAfter(Node<T> p) {
         Node<T> n = find(p);
         
         if (n == null) {
@@ -264,7 +256,7 @@ public class MyLinkedList <T> {
         remove(getNext(n));
     }
     
-    void removeBefore(Node<T> p) {
+    public void removeBefore(Node<T> p) {
         Node<T> n = find(p);
         
         if (n == null) { 
@@ -274,7 +266,7 @@ public class MyLinkedList <T> {
         remove(getPrev(n));
     }
     
-    void set(Node<T> p, T x) {
+    public void set(Node<T> p, T x) {
         Node n = find(p);
         
         if (n == null) { 
@@ -284,75 +276,13 @@ public class MyLinkedList <T> {
         n.info = x;
     }
     
-//    Node<T> max() {
-//        Node<T> p = head;
-//        Node<T> m = p;
-//        while (p != null) {
-//            if (p.info > m.info) {
-//                m = p;
-//            }
-//            p = p.next;
-//        }
-//        return m;
-//    }
-    
-//    Node<T> secondMax() {
-//        Node max = max();
-//        Node p = head;
-//        Node secondMax = null;
-//
-//        // Traverse the list to find the second maximum
-//        while (p != null) {
-//            if (p.info < max.info) {
-//                if (secondMax == null || p.info > secondMax.info) {
-//                    secondMax = p;
-//                }
-//            }
-//            p = p.next;
-//        }
-//
-//        return secondMax;
-//    }
-
-    
-    void swap(Node<T> p, Node<T> q) {
+    public void swap(Node<T> p, Node<T> q) {
         T temp = p.info;
         p.info = q.info;
         q.info = temp;
     }
-    
-//    void sort() {
-//        Node p = head;
-//        Node q;
-//        while (p != null) {
-//            q = p.next;
-//            while (q != null) {
-//                if (p.info > q.info) {
-//                    swap(p, q);
-//                }
-//                q = q.next;
-//            }
-//            p = p.next;
-//        }
-//    }
-//    
-//    void sort(Node p, Node q) {
-//        while (p != null) {
-//            Node t = p.next;
-//            while (t != null) {
-//                if (t == q.next) {
-//                    return;
-//                }
-//                if (p.info > t.info) {
-//                    swap(p, t);
-//                }
-//                t = t.next;
-//            }
-//            p = p.next;
-//        }
-//    }
-    
-    void reverse() {
+
+    public void reverse() {
         Node<T> next, current, previous;
         current = head;
         previous = null;

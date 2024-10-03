@@ -4,7 +4,11 @@
  */
 package gui;
 
+import core.BookingList;
+import core.RoomList;
+import core.StudentList;
 import java.util.Arrays;
+import manager.RoomManager;
 import util.Inputter;
 import util.Menu;
 
@@ -54,11 +58,17 @@ public class Main {
         "6. Leave a room",
         "0. Go back"
     };
-
+    
+    
+    private static BookingList bookingList = new BookingList();
+    private static StudentList studentList = new StudentList();
+    private static RoomList roomList = new RoomList();
+    
     public static void main(String[] args) {
         displayMainMenu();
     }
     
+    // Works fine for now
     static void displayMainMenu() {
         Menu menu = new Menu("Dorm Management Program", "Your choice: ");
         menu.addAll(Arrays.asList(OPTIONS));
@@ -85,7 +95,9 @@ public class Main {
         }
     }
     
+    // need implementations
     static void displayMenuRoom() {
+        RoomManager manager = new RoomManager(roomList);
         Menu menu = new Menu("Room options", "Your choice: ");
         menu.addAll(Arrays.asList(ROOM_OPTIONS));
         menu.display();
@@ -97,14 +109,35 @@ public class Main {
             case 0:
                 return;
             case 1:
+                manager.loadData("resources/rooms.txt");
                 break;
             case 2:
+                manager.createNewRoomAtEnd();
                 break;
             case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
+            case 12:
                 break;
         }
     }
     
+    // need implementations
     static void displayMenuStudent() {
         Menu menu = new Menu("Student options", "Your choice: ");
         menu.addAll(Arrays.asList(STUDENT_OPTIONS));
@@ -125,6 +158,7 @@ public class Main {
         }
     }
     
+    // need implementations
     static void displayMenuBooking() {
         Menu menu = new Menu("Booking options", "Your choice: ");
         menu.addAll(Arrays.asList(BOOKING_OPTIONS));
