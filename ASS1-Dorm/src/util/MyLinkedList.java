@@ -20,7 +20,7 @@ public class MyLinkedList <T> {
         tail = null;
     }
     
-    void addLast(T x) {
+    protected void addLast(T x) {
         Node<T> newNode = new Node(x);
         
         if (isEmpty()) {
