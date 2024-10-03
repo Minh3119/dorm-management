@@ -8,7 +8,9 @@ import core.BookingList;
 import core.RoomList;
 import core.StudentList;
 import java.util.Arrays;
+import manager.BookingManager;
 import manager.RoomManager;
+import manager.StudentManager;
 import util.Inputter;
 import util.Menu;
 
@@ -64,6 +66,8 @@ public class Main {
     private static StudentList studentList = new StudentList();
     private static RoomList roomList = new RoomList();
     
+    
+    
     public static void main(String[] args) {
         displayMainMenu();
     }
@@ -78,7 +82,6 @@ public class Main {
             
             int choice;
             choice = Inputter.getInt(0,OPTIONS.length);
-
             switch (choice) {
                 case 0:
                     return;
@@ -100,82 +103,131 @@ public class Main {
         RoomManager manager = new RoomManager(roomList);
         Menu menu = new Menu("Room options", "Your choice: ");
         menu.addAll(Arrays.asList(ROOM_OPTIONS));
-        menu.display();
         
-        int choice;
-        choice = Inputter.getInt(0,OPTIONS.length);
+        while (true) {
+            menu.display();
 
-        switch (choice) {
-            case 0:
-                return;
-            case 1:
-                manager.loadData("resources/rooms.txt");
-                break;
-            case 2:
-                manager.createNewRoomAtEnd();
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
-            case 10:
-                break;
-            case 11:
-                break;
-            case 12:
-                break;
+            int choice;
+            choice = Inputter.getInt(0,OPTIONS.length);
+            switch (choice) {
+                case 0:
+                    return;
+                case 1:
+                    manager.loadData();
+                    break;
+                case 2:
+                    manager.createNewRoomAtEnd();
+                    break;
+                case 3:
+                    manager.display();
+                    break;
+                case 4:
+                    manager.saveData();
+                    break;
+                case 5:
+                    manager.searchRoomByCode();
+                    break;
+                case 6:
+                    manager.deleteRoomByCode();
+                    break;
+                case 7:
+                    manager.sort();
+                    break;
+                case 8:
+                    manager.createNewRoomAtBeginning();
+                    break;
+                case 9:
+                    manager.createNewRoomBeforeIndex();
+                    break;
+                case 10:
+                    manager.deleteRoomByIndex();
+                    break;
+                case 11:
+                    manager.searchRoomByName();
+                    break;
+                case 12:
+                    manager.searchBookedRoomByCode();
+                    break;
+            }
         }
     }
     
     // need implementations
     static void displayMenuStudent() {
+        StudentManager manager = new StudentManager(studentList);
         Menu menu = new Menu("Student options", "Your choice: ");
         menu.addAll(Arrays.asList(STUDENT_OPTIONS));
-        menu.display();
         
-        int choice;
-        choice = Inputter.getInt(0,OPTIONS.length);
+        while (true) {
+            menu.display();
 
-        switch (choice) {
-            case 0:
-                return;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+            int choice;
+            choice = Inputter.getInt(0,OPTIONS.length);
+            switch (choice) {
+                case 0:
+                    return;
+                case 1:
+                    manager.loadData();
+                    break;
+                case 2:
+                    manager.createNewStudentAtEnd();
+                    break;
+                case 3:
+                    manager.display();
+                    break;
+                case 4:
+                    manager.saveData();
+                    break;
+                case 5:
+                    manager.searchStudentByCode();
+                    break;
+                case 6:
+                    manager.deleteStudentByCode();
+                    break;
+                case 7:
+                    manager.searchStudentByName();
+                    break;
+                case 8:
+                    manager.searchBookedRoomByStudentCode();
+                    break;
+            }
         }
     }
     
     // need implementations
     static void displayMenuBooking() {
+        BookingManager manager = new BookingManager(bookingList);
         Menu menu = new Menu("Booking options", "Your choice: ");
         menu.addAll(Arrays.asList(BOOKING_OPTIONS));
-        menu.display();
         
-        int choice;
-        choice = Inputter.getInt(0,OPTIONS.length);
+        while (true) {
+            menu.display();
 
-        switch (choice) {
-            case 0:
-                return;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+            int choice;
+            choice = Inputter.getInt(0,OPTIONS.length);
+
+            switch (choice) {
+                case 0:
+                    return;
+                case 1:
+                    manager.loadData();
+                    break;
+                case 2:
+                    manager.bookRoom();
+                    break;
+                case 3:
+                    manager.display();
+                    break;
+                case 4:
+                    manager.saveData();
+                    break;
+                case 5:
+                    manager.sort();
+                    break;
+                case 6:
+                    manager.leaveRoom();
+                    break;
+            }
         }
     }
     

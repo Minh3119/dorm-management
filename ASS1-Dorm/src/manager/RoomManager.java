@@ -18,17 +18,21 @@ Main -> manager.BookingManager -> core.BookingList -> dto.Booking
 
 public class RoomManager {
     
+    static String filename = "resources/rooms.txt";
+    
     private RoomList roomList;
 
     public RoomManager(RoomList roomList) {
         this.roomList = roomList;
     }
     
-    public void loadData(String filename) {
+    // 1.1
+    public void loadData() {
         roomList.loadData(filename);
         System.out.format("Loaded rooms from %s.\n", filename);
     }
     
+    // 1.2
     public void createNewRoomAtEnd() {
         System.out.println("\nPlease insert infomation for the new room:");
         
@@ -57,7 +61,8 @@ public class RoomManager {
         roomType = Inputter.getRoomType();
         
         // get amount of booked beds in the room
-        booked = Inputter.getBookedBeds(roomType);
+        System.out.println("Number of booked beds: ");
+        booked = Inputter.getInt(0, roomType.getBeds());
         
         // get room's price
         price = Inputter.getPrice();
@@ -65,6 +70,52 @@ public class RoomManager {
         Room room = new Room(rcode, rname, dom, floor, roomType, booked, price);        
         roomList.addToEnd(room);
         System.out.format("Created new room.\n");
+    }
+    
+    // 1.3
+    public void display() {
+        roomList.display();
+    }
+    
+    // 1.4
+    public void saveData() {
+        roomList.saveData(filename);
+    }
+    
+    // 1.5
+    public void searchRoomByCode() {
+    }
+    
+    // 1.6
+    public void deleteRoomByCode() {
+    }
+    
+    // 1.7
+    public void sort() {
+    }
+    
+    // 1.8
+    public void createNewRoomAtBeginning() {
+    }
+    
+    // 1.9
+    public void createNewRoomBeforeIndex() {
+        //roomList.addBeforeIndex(index, room);
+    }
+    
+    // 1.10
+    public void deleteRoomByIndex() {
+        //roomList.deleteByIndex(index);
+        System.out.println("Deleted.");
+    }
+    
+    // 1.11
+    public void searchRoomByName() {
+        // ask user for room name and search and print room info        
+    }
+    
+    // 1.12
+    public void searchBookedRoomByCode() {
     }
     
 }

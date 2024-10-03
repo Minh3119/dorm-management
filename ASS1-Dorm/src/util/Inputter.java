@@ -28,10 +28,11 @@ public class Inputter {
         }
     }
     
-    public static int getBookedBeds(RoomType roomType) {
-        System.out.print("Number of booked beds: ");
-        return getInt(0, roomType.getBeds());
-    }
+//    public static int getBookedBeds(RoomType roomType) {
+//        
+//        int maxBeds = roomType.getBeds();
+//        return getInt(0, maxBeds);
+//    }
     
     public static String getString() {
         return scanner.nextLine();
@@ -42,7 +43,7 @@ public class Inputter {
         menu.add("1. Double room (" +RoomType.DOUBLE.getBeds()+ " beds)");
         menu.add("2. Triple room (" +RoomType.TRIPLE.getBeds()+ " beds)");
         menu.display();
-        System.out.print("Please choose an option:");
+
         int choice = getInt(1,2);
         switch (choice) {
             case 1:
