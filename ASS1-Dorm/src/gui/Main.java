@@ -109,6 +109,7 @@ public class Main {
 
             int choice;
             choice = Inputter.getInt(0,OPTIONS.length);
+            System.out.println("");
             switch (choice) {
                 case 0:
                     return;
@@ -163,6 +164,7 @@ public class Main {
 
             int choice;
             choice = Inputter.getInt(0,OPTIONS.length);
+            System.out.println("");
             switch (choice) {
                 case 0:
                     return;
@@ -205,7 +207,7 @@ public class Main {
 
             int choice;
             choice = Inputter.getInt(0,OPTIONS.length);
-
+            System.out.println("");
             switch (choice) {
                 case 0:
                     return;

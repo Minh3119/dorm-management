@@ -34,7 +34,7 @@ public class RoomManager {
     
     // 1.2
     public void createNewRoomAtEnd() {
-        System.out.println("\nPlease insert infomation for the new room:");
+        System.out.println("Please insert infomation for the new room:");
         
         String rcode, rname, dom, floor;
         RoomType roomType;
