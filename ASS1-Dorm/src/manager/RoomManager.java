@@ -153,11 +153,11 @@ public class RoomManager {
         }
     }
 
-    // 1.12
-    public void searchBookedRoomByCode() {
-        System.out.print("Input room code: ");
-        String input = Inputter.getString();
-        roomList.searchBookedRoomByCode(input);
-    }
+//    // 1.12
+//    public void searchBookedRoomByCode() {
+//        System.out.print("Input room code: ");
+//        String input = Inputter.getString();
+//        roomList.searchBookedRoomByCode(input);
+//    }
 
 }

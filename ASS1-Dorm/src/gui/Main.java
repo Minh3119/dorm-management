@@ -66,7 +66,9 @@ public class Main {
     private final static StudentList studentList = new StudentList();
     private final static RoomList roomList = new RoomList();
     
-    
+    private final static RoomManager roomManager = new RoomManager(roomList);
+    private final static StudentManager studentManager = new StudentManager(studentList);
+    private final static BookingManager bookingManager = new BookingManager(bookingList, roomList, studentList);
     
     public static void main(String[] args) {
         displayMainMenu();
@@ -100,7 +102,6 @@ public class Main {
     
     // need implementations
     static void displayMenuRoom() {
-        RoomManager manager = new RoomManager(roomList);
         Menu menu = new Menu("Room options", "Your choice: ");
         menu.addAll(Arrays.asList(ROOM_OPTIONS));
         
@@ -114,40 +115,40 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    manager.loadData();
+                    roomManager.loadData();
                     break;
                 case 2:
-                    manager.createNewRoomAtEnd();
+                    roomManager.createNewRoomAtEnd();
                     break;
                 case 3:
-                    manager.display();
+                    roomManager.display();
                     break;
                 case 4:
-                    manager.saveData();
+                    roomManager.saveData();
                     break;
                 case 5:
-                    manager.searchRoomByCode();
+                    roomManager.searchRoomByCode();
                     break;
                 case 6:
-                    manager.deleteRoomByCode();
+                    roomManager.deleteRoomByCode();
                     break;
                 case 7:
-                    manager.sort();
+                    roomManager.sort();
                     break;
                 case 8:
-                    manager.createNewRoomAtBeginning();
+                    roomManager.createNewRoomAtBeginning();
                     break;
                 case 9:
-                    manager.createNewRoomBeforeIndex();
+                    roomManager.createNewRoomBeforeIndex();
                     break;
                 case 10:
-                    manager.deleteRoomByIndex();
+                    roomManager.deleteRoomByIndex();
                     break;
                 case 11:
-                    manager.searchRoomByName();
+                    roomManager.searchRoomByName();
                     break;
                 case 12:
-                    manager.searchBookedRoomByCode();
+                    bookingManager.searchBookedRoomByCode();
                     break;
             }
         }
@@ -155,7 +156,6 @@ public class Main {
     
     // need implementations
     static void displayMenuStudent() {
-        StudentManager manager = new StudentManager(studentList);
         Menu menu = new Menu("Student options", "Your choice: ");
         menu.addAll(Arrays.asList(STUDENT_OPTIONS));
         
@@ -169,28 +169,28 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    manager.loadData();
+                    studentManager.loadData();
                     break;
                 case 2:
-                    manager.createNewStudentAtEnd();
+                    studentManager.createNewStudentAtEnd();
                     break;
                 case 3:
-                    manager.display();
+                    studentManager.display();
                     break;
                 case 4:
-                    manager.saveData();
+                    studentManager.saveData();
                     break;
                 case 5:
-                    manager.searchStudentByCode();
+                    studentManager.searchStudentByCode();
                     break;
                 case 6:
-                    manager.deleteStudentByCode();
+                    studentManager.deleteStudentByCode();
                     break;
                 case 7:
-                    manager.searchStudentByName();
+                    studentManager.searchStudentByName();
                     break;
                 case 8:
-                    manager.searchBookedRoomByStudentCode(bookingList);
+                    studentManager.searchBookedRoomByStudentCode(bookingList);
                     break;
             }
         }
@@ -198,7 +198,6 @@ public class Main {
     
     // need implementations
     static void displayMenuBooking() {
-        BookingManager manager = new BookingManager(bookingList, roomList, studentList);
         Menu menu = new Menu("Booking options", "Your choice: ");
         menu.addAll(Arrays.asList(BOOKING_OPTIONS));
         
@@ -212,22 +211,22 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    manager.loadData();
+                    bookingManager.loadData();
                     break;
                 case 2:
-                    manager.bookRoom();
+                    bookingManager.bookRoom();
                     break;
                 case 3:
-                    manager.display();
+                    bookingManager.display();
                     break;
                 case 4:
-                    manager.saveData();
+                    bookingManager.saveData();
                     break;
                 case 5:
-                    manager.sort();
+                    bookingManager.sort();
                     break;
                 case 6:
-                    manager.leaveRoom();
+                    bookingManager.leaveRoom();
                     break;
             }
         }

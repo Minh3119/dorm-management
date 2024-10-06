@@ -13,6 +13,7 @@ import dto.Room;
 import dto.Student;
 import java.util.Date;
 import util.Inputter;
+import util.Node;
 
 public class BookingManager {
     
@@ -130,6 +131,28 @@ public class BookingManager {
         System.out.print("Enter Student Code: ");
         String scode = Inputter.getString();
         bookingList.leaveRoom(rcode, scode, roomList);
+    }
+    
+    // 1.12
+    public void searchBookedRoomByCode() {
+        System.out.println("Enter Room Code: ");
+        String rcode = Inputter.getString();
+        
+        Node<Booking> p = bookingList.head;
+        boolean firstFind = true;
+        while(p != null) {
+            if (p.getInfo().getRcode().equals(rcode)) {
+                if (firstFind) {
+                    System.out.println("Found booked room with code: " + rcode);
+                    Student student = studentList.searchByCode(p.getInfo().getScode());
+                    studentList.display(student);
+                } else {
+                    Student student = studentList.searchByCode(p.getInfo().getScode());
+                    System.out.println(student);
+                }
+            }
+            p = p.getNext();
+        }
     }
     
 }
