@@ -5,13 +5,13 @@
 package util;
 
 public class MyLinkedList <T> {
-    Node<T> head;
-    Node<T> tail;
+    public Node<T> head;
+    public Node<T> tail;
 
     public MyLinkedList() {
     }
     
-    boolean isEmpty() {
+   public boolean isEmpty() {
         return head==null;
     }
     
