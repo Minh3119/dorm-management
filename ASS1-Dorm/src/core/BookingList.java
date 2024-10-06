@@ -92,10 +92,38 @@ public class BookingList extends MyLinkedList<Booking> {
     }    
     
     // 3.5
-    public void sort(String rcode, String scode) {
+    public void sortRoomCodeDESC() {
         // sort + display result
         // rcode: descending, then scode descending
-        
+        Node<Booking> p = head;
+        Node<Booking> q;
+        while (p != null) {
+            q = p.getNext();
+            while (q != null) {
+                if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) < 0) {
+                    swap(p, q);
+                }
+                q = q.getNext();
+            }
+            p = p.getNext();
+        }
+    }
+    
+    public void sortStudentCodeDESC() {
+        // sort + display result
+        // rcode: descending, then scode descending
+        Node<Booking> p = head;
+        Node<Booking> q;
+        while (p != null) {
+            q = p.getNext();
+            while (q != null) {
+                if (p.getInfo().getScode().compareTo(q.getInfo().getScode()) < 0) {
+                    swap(p, q);
+                }
+                q = q.getNext();
+            }
+            p = p.getNext();
+        }
     }
     
     // 3.6

@@ -297,29 +297,29 @@ public class MyLinkedList<T> {
         head = previous;
     }
 
-    public void sort() {
-        if (head == null) {
-            return;
-        }
-
-        Node<T> current = head;
-
-        while (current != null) {
-            Node<T> minNode = current;
-            Node<T> nextNode = current.next;
-
-            while (nextNode != null) {
-                if (((Comparable<T>) nextNode.info).compareTo(minNode.info) < 0) {
-                    minNode = nextNode;
-                }
-                nextNode = nextNode.next;
-            }
-
-            if (minNode != current) {
-                swap(current, minNode);
-            }
-            
-            current = current.next;
-        }
-    }
+//    public void sort() {
+//        if (head == null) {
+//            return;
+//        }
+//
+//        Node<T> current = head;
+//
+//        while (current != null) {
+//            Node<T> minNode = current;
+//            Node<T> nextNode = current.next;
+//
+//            while (nextNode != null) {
+//                if (((Comparable<T>) nextNode.info).compareTo(minNode.info) < 0) {
+//                    minNode = nextNode;
+//                }
+//                nextNode = nextNode.next;
+//            }
+//
+//            if (minNode != current) {
+//                swap(current, minNode);
+//            }
+//            
+//            current = current.next;
+//        }
+//    }
 }

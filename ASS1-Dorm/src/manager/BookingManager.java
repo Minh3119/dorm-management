@@ -94,8 +94,10 @@ public class BookingManager {
     
     // 3.5
     public void sort() {
-        bookingList.sort();
-        System.out.println("Bookings sorted by rcode and scode.");
+        bookingList.sortRoomCodeDESC();
+        bookingList.display();
+        bookingList.sortStudentCodeDESC();
+        bookingList.display();
     }
     
     // 3.6

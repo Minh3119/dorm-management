@@ -102,6 +102,8 @@ public class RoomManager {
 
     // 1.7
     public void sort() {
+        roomList.sortByCode();
+        roomList.display();
     }
 
     // 1.8

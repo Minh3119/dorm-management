@@ -103,19 +103,30 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.6
     public void deleteByCode(String rcode) {
-        Node<Room> p = searchNodeByCode(scode);
+        Node<Room> p = searchNodeByCode(rcode);
         if (p != null) {
             this.remove(p);
-            System.out.println("Room with code " + scode + " has been deleted.");
+            System.out.println("Room with code " + rcode + " has been deleted.");
         } else {
-            System.out.println("Room with code " + scode + " not found.");
+            System.out.println("Room with code " + rcode + " not found.");
         }
     }
 
     // 1.7
     public void sortByCode() {
-        // sort the list based on rcode
-
+        // sort the list based on rcode ASCENDING
+        Node<Room> p = head;
+        Node<Room> q;
+        while (p != null) {
+            q = p.getNext();
+            while (q != null) {
+                if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) > 0) {
+                    swap(p, q);
+                }
+                q = q.getNext();
+            }
+            p = p.getNext();
+        }
     }
 
     // 1.8

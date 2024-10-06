@@ -108,7 +108,7 @@ public class Main {
             menu.display();
 
             int choice;
-            choice = Inputter.getInt(0,OPTIONS.length);
+            choice = Inputter.getInt(0,ROOM_OPTIONS.length);
             System.out.println("");
             switch (choice) {
                 case 0:
@@ -163,7 +163,7 @@ public class Main {
             menu.display();
 
             int choice;
-            choice = Inputter.getInt(0,OPTIONS.length);
+            choice = Inputter.getInt(0,STUDENT_OPTIONS.length);
             System.out.println("");
             switch (choice) {
                 case 0:
@@ -206,7 +206,7 @@ public class Main {
             menu.display();
 
             int choice;
-            choice = Inputter.getInt(0,OPTIONS.length);
+            choice = Inputter.getInt(0,BOOKING_OPTIONS.length);
             System.out.println("");
             switch (choice) {
                 case 0:
