@@ -103,8 +103,13 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.6
     public void deleteByCode(String rcode) {
-        // delete a room by code
-
+        Node<Room> p = searchNodeByCode(scode);
+        if (p != null) {
+            this.remove(p);
+            System.out.println("Room with code " + scode + " has been deleted.");
+        } else {
+            System.out.println("Room with code " + scode + " not found.");
+        }
     }
 
     // 1.7
