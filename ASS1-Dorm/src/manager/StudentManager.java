@@ -63,19 +63,19 @@ public class StudentManager {
 
     // 2.5
     public void searchStudentByCode() {
-        //Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter student code: ");
+    String scode = Inputter.getString();
 
-        System.out.print("Enter student code: ");
-        String scode = Inputter.getString();
+    // Gọi phương thức searchNodeByCode trong lớp StudentList
+    Node<Student> studentNode = studentList.searchNodeByCode(scode);
 
-        Node<Student> studentNode = studentList.get(new Student(scode, "", 0));
-
-        if (studentNode != null) {
-            System.out.println("Student found: " + studentNode.getInfo());
-        } else {
-            System.out.println("Student with code " + scode + " not found.");
-        }
+    if (studentNode != null) {
+        System.out.println("Student found: " + studentNode.getInfo());
+    } else {
+        System.out.println("Student with code " + scode + " not found.");
     }
+}
+
 
     // 2.6
     public void deleteStudentByCode() {
