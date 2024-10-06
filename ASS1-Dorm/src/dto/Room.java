@@ -28,6 +28,10 @@ public class Room {
     
     // price for 1 bed
     private double price;
+    
+    public Room(){
+        
+    }
 
     public Room(String rcode, String name, String dom, String floor, RoomType roomType, int booked, double price) {
         this.rcode = rcode;
