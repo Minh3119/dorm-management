@@ -14,6 +14,7 @@ import java.io.IOException;
 import util.Inputter;
 import util.Node;
 import util.RoomType;
+import core.BookingList;
 
 public class RoomList extends MyLinkedList<Room> {
 
@@ -191,23 +192,30 @@ public class RoomList extends MyLinkedList<Room> {
         return null;  
     }
 
-    // 1.12
-    public Room searchBookedRoomByCode(String rcode) {
-        // Tìm kiếm phòng phương thức searchNodeByCode
-        Node<Room> roomNode = searchNodeByCode(rcode);
-
-        if (roomNode != null) {
-            Room room = roomNode.getInfo();
-            if (room.getBooked() == 0) {
-                return room;
-            } else {
-                System.out.println("Room is fully booked");
-            }
-        } else {
-            System.out.println("Room with code " + rcode + " not found.");
-        }
-
-        return null;  // Trả về null
-    }
+//    // 1.12
+//    public Room searchBookedRoomByCode(String rcode, BookingList bookingList) {
+//        
+//        Node<Booking> p = bookingList.head;
+//        while(p != null) {
+//            if (p.getInfo().getRCode)
+//            p = p.getNext();
+//        }
+//        
+//        // Tìm kiếm phòng phương thức searchNodeByCode
+//        Node<Room> roomNode = searchNodeByCode(rcode);
+//
+//        if (roomNode != null) {
+//            Room room = roomNode.getInfo();
+//            if (room.getBooked() == 0) {
+//                return room;
+//            } else {
+//                System.out.println("Room is fully booked");
+//            }
+//        } else {
+//            System.out.println("Room with code " + rcode + " not found.");
+//        }
+//
+//        return null;  // Trả về null
+//    }
 
 }
