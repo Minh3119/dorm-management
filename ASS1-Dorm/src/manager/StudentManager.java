@@ -4,7 +4,9 @@
  */
 package manager;
 
+import core.BookingList;
 import core.StudentList;
+import dto.Booking;
 import dto.Room;
 import dto.Student;
 import java.util.Scanner;
@@ -117,24 +119,26 @@ public class StudentManager {
     }
     
     // 2.8
-    public void searchBookedRoomByStudentCode() {
-          Scanner scanner = new Scanner(System.in);
-    
+    public void searchBookedRoomByStudentCode(BookingList bookingList) {
+            Scanner scanner = new Scanner(System.in);
     System.out.print("Enter student code: ");
     String scode = scanner.nextLine();
-    
-    Node<Student> studentNode = studentList.get(new Student(scode, "", 0));
-    
-    if (studentNode != null) {
-        Room bookedRoom = studentNode.getInfo().getBookedRoom();
-        if (bookedRoom != null) {
-            System.out.println("Student with code " + scode + " has booked room: " + bookedRoom.getRcode() + ", " + bookedRoom.getName());
-        } else {
-            System.out.println("Student with code " + scode + " has not booked any room.");
+
+    boolean found = false;  
+    Node<Booking> current = bookingList.head; 
+    while (current != null) {
+        Booking booking = current.getInfo();
+     
+        if (booking.getScode().equals(scode) && booking.getState() == 1) {
+            System.out.println("Student with code " + scode + " has booked room with room code: " + booking.getRcode());
+            found = true;
         }
-    } else {
-        System.out.println("Student with code " + scode + " not found.");
+        
+        current = current.getNext();
     }
+
+    if (!found) {
+        System.out.println("Student with code " + scode + " has not booked any room.");
     }
-    
+    }   
 }

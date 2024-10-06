@@ -5,6 +5,7 @@
 
 package core;
 
+import dto.Booking;
 import dto.Room;
 import dto.Student;
 import util.MyLinkedList;
@@ -80,26 +81,36 @@ public class StudentList extends MyLinkedList<Student> {
     }
     
     // 2.8
-    public void searchStudentRoom(String scode) {
+    public void searchStudentRoom(String scode, BookingList bookingList) {
          // Search for the student by student code
     Node<Student> studentNode = searchByCode(scode);
     
-    
     if (studentNode != null) {
-        // Access the bookedRoom property directly
-        Room bookedRoom = studentNode.getInfo().bookedRoom; // Direct access
-        
-        // Check if the student has booked a room
-        if (bookedRoom != null) {
-            // Print out the room code and room name
-            System.out.println("Student with code " + scode + " has booked the room:");
-            System.out.println("Room code: " + bookedRoom.getRcode());
-            System.out.println("Room name: " + bookedRoom.getName());
-        } else {
+        // Tìm trong danh sách Booking để biết sinh viên đã đặt phòng nào
+        Node<Booking> currentBooking = bookingList.head;
+        boolean found = false;
+
+        while (currentBooking != null) {
+            Booking booking = currentBooking.getInfo();
+            
+            // Nếu mã sinh viên trùng và trạng thái phòng là 1 (đã đặt)
+            if (booking.getScode().equals(scode) && booking.getState() == 1) {
+                // Chỉ cần lấy mã phòng từ Booking
+                String bookedRoomCode = booking.getRcode();
+                
+                // In ra mã phòng đã đặt
+                System.out.println("Student with code " + scode + " has booked room: ");
+                System.out.println("Room code: " + bookedRoomCode);
+                found = true;
+                break;
+            }
+            currentBooking = currentBooking.getNext();
+        }
+        if (!found) {
             System.out.println("Student with code " + scode + " has not booked any room.");
         }
     } else {
         System.out.println("Student with code " + scode + " not found.");
     }
-}
 } 
+}
