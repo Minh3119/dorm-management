@@ -86,6 +86,10 @@ public class Room {
     public void increaseBooked() {
         this.booked++;
     }
+    
+    public void decreaseBooked() {
+        this.booked--;
+    }
 
     public void setPrice(double price) {
         this.price = price;

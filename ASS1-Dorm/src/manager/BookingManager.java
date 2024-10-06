@@ -129,7 +129,7 @@ public class BookingManager {
         String rcode = Inputter.getString();
         System.out.print("Enter Student Code: ");
         String scode = Inputter.getString();
-        bookingList.leaveRoom(rcode, scode);
+        bookingList.leaveRoom(rcode, scode, roomList);
     }
     
 }
