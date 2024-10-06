@@ -16,7 +16,7 @@ import util.Node;
 import util.RoomType;
 
 public class RoomList extends MyLinkedList<Room> {
-    
+
     public RoomList() {
     }
 
@@ -56,7 +56,7 @@ public class RoomList extends MyLinkedList<Room> {
         // display all rooms in the list
         System.out.println("-------------------------------------------------------------------------------------------------");
         System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
-                "rcode", "name", "dom", "floor", "type", "beds","booked", "price");
+                "rcode", "name", "dom", "floor", "type", "beds", "booked", "price");
         System.out.println("-------------------------------------------------------------------------------------------------");
         traverse();
     }
@@ -65,12 +65,12 @@ public class RoomList extends MyLinkedList<Room> {
     public void saveData(String filename) {
         // data = rcode, name, dom, floor, type, booked, price
         loadData(filename);
-        
+
         if (this.isEmpty()) {
             System.out.println("No rooms found.");
             return;
         }
-        
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
             Node<Room> p = head;
             String[] lineComponents = new String[7];
@@ -105,7 +105,7 @@ public class RoomList extends MyLinkedList<Room> {
         }
         return null;
     }
-    
+
     private Node searchNodeByCode(String rcode) {
         Node<Room> p = head;
         while (p != null) {
@@ -116,7 +116,6 @@ public class RoomList extends MyLinkedList<Room> {
         }
         return null;
     }
-    
 
     // 1.6
     public void deleteByCode(String rcode) {
@@ -165,8 +164,7 @@ public class RoomList extends MyLinkedList<Room> {
             count++;
             if (index == count) {
                 room.remove(index);
-            }
-            else{
+            } else {
                 System.out.println("Data not found");
             }
         }
@@ -174,39 +172,34 @@ public class RoomList extends MyLinkedList<Room> {
     }
 
     // 1.11
-    public void searchByName(String name) {
-        // search the room by name
-        MyLinkedList<Room> room = new MyLinkedList<>();
-        Room rooms = new Room();
-        for (int i = 0; i < room.size(); i++) {
-            String n = rooms.getName();
-            if (n == null ? name == null : n.equals(name)) {
-                System.out.println(rooms);
+    public Node<Room> searchByName(String name) {
+        Node<Room> current = head;  
+        while (current != null) {
+            if (current.getInfo().getName().equals(name)) {
+                return current;  
             }
-            else{
-                System.out.println("Data not found");
-            }
+            current = current.getNext();  
         }
-        return;
+        return null;  
     }
 
     // 1.12
     public Room searchBookedRoomByCode(String rcode) {
-        // search the BOOKED room
-        MyLinkedList<Room> room = new MyLinkedList<>();
-        Room rooms = new Room();
-        for (int i = 0; i < room.size(); i++) {
-            String code = rooms.getRcode();
-            if (rooms.getBooked() == 0) {
-                if (code == null ? rcode == null : code.equals(rcode)) {
-                    return rooms;
-                }
-            }
-            else{
+        // Tìm kiếm phòng phương thức searchNodeByCode
+        Node<Room> roomNode = searchNodeByCode(rcode);
+
+        if (roomNode != null) {
+            Room room = roomNode.getInfo();
+            if (room.getBooked() == 0) {
+                return room;
+            } else {
                 System.out.println("Room is fully booked");
             }
+        } else {
+            System.out.println("Room with code " + rcode + " not found.");
         }
-        return null;
+
+        return null;  // Trả về null
     }
 
 }

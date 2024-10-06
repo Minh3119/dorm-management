@@ -93,14 +93,6 @@ public class StudentManager {
         }
     }
 
-    // 2.6
-    public void deleteStudentByCode() {
-        System.out.print("Enter student code to delete: ");
-        String scode = Inputter.getString();
-
-        studentList.deleteByCode(scode);
-    }
-
     // 2.7
     public void searchStudentByName() {
         System.out.print("Enter student name: ");

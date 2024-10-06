@@ -143,11 +143,18 @@ public class RoomManager {
 
     // 1.11
     public void searchRoomByName() {
-        // ask user for room name and search and print room info 
+
         System.out.print("Input room name: ");
-        String input = Inputter.getString();
-        roomList.searchByName(input);
+        String name = Inputter.getString();
+        Node<Room> roomNode = roomList.searchByName(name);
+        if (roomNode != null) {
+        System.out.println("Room found: " + roomNode.getInfo());
+    } else {
+        System.out.println("Data not found");
     }
+    }
+  
+
 
     // 1.12
     public void searchBookedRoomByCode() {
