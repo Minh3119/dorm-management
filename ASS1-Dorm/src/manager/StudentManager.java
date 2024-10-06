@@ -83,20 +83,26 @@ public class StudentManager {
         System.out.print("Enter student code to delete: ");
         String scode = Inputter.getString();
 
-        Node<Student> studentNode = studentList.get(new Student(scode, "", 0));
+        Student student = studentList.searchByCode(scode);
 
-        if (studentNode != null) {
-            studentList.remove(studentNode);
-            System.out.println("Student with code " + scode + " has been deleted.");
+        if (student != null) {
+            System.out.println("Student found:");
+            studentList.display(student);
         } else {
             System.out.println("Student with code " + scode + " not found.");
         }
     }
 
+    // 2.6
+    public void deleteStudentByCode() {
+        System.out.print("Enter student code to delete: ");
+        String scode = Inputter.getString();
+
+        studentList.deleteByCode(scode);
+    }
+
     // 2.7
     public void searchStudentByName() {
-        //Scanner scanner = new Scanner(System.in);
-
         System.out.print("Enter student name: ");
         String name = Inputter.getString();
 
@@ -118,7 +124,6 @@ public class StudentManager {
 
     // 2.8
     public void searchBookedRoomByStudentCode(BookingList bookingList) {
-        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter student code: ");
         String scode = Inputter.getString();
 

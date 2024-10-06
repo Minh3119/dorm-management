@@ -57,6 +57,13 @@ public class StudentList extends MyLinkedList<Student> {
         System.out.println("-------------------------------------------------");
         this.traverse();
     }
+    
+    public void display(Student student) {
+//        System.out.println("-------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
+        System.out.println("-------------------------------------------------");
+        System.out.println(student);
+    }
 
     // 2.4
     public void saveData(String filename) {
