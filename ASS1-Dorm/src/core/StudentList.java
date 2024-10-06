@@ -86,19 +86,19 @@ public class StudentList extends MyLinkedList<Student> {
     Node<Student> studentNode = searchByCode(scode);
     
     if (studentNode != null) {
-        // Tìm trong danh sách Booking để biết sinh viên đã đặt phòng nào
+       
         Node<Booking> currentBooking = bookingList.head;
         boolean found = false;
 
         while (currentBooking != null) {
             Booking booking = currentBooking.getInfo();
             
-            // Nếu mã sinh viên trùng và trạng thái phòng là 1 (đã đặt)
+           
             if (booking.getScode().equals(scode) && booking.getState() == 1) {
-                // Chỉ cần lấy mã phòng từ Booking
+
                 String bookedRoomCode = booking.getRcode();
                 
-                // In ra mã phòng đã đặt
+              
                 System.out.println("Student with code " + scode + " has booked room: ");
                 System.out.println("Room code: " + bookedRoomCode);
                 found = true;
@@ -113,4 +113,4 @@ public class StudentList extends MyLinkedList<Student> {
         System.out.println("Student with code " + scode + " not found.");
     }
 } 
-}
+} 
