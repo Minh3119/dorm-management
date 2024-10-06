@@ -27,8 +27,8 @@ public class RoomManager {
 
     // 1.1
     public void loadData() {
-        roomList.loadData(filename);
-        System.out.format("Loaded rooms from %s.\n", filename);
+        int count = roomList.loadData(filename);
+        System.out.format("Loaded %d rooms.\n", count);
     }
 
     // 1.2
@@ -84,8 +84,7 @@ public class RoomManager {
 
     // 1.4
     public void saveData() {
-        roomList.saveData(filename);
-        System.out.format("Saved rooms to %s \n", filename);
+        roomList.saveData(filename);        
     }
 
     // 1.5

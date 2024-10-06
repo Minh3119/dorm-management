@@ -23,8 +23,8 @@ public class StudentManager {
 
     // 2.1
     public void loadData() {
-        studentList.loadData(filename);
-        System.out.format("Loaded students from %s.\n", filename);
+        int count = studentList.loadData(filename);
+        System.out.format("Loaded %d students.\n", count);
     }
 
     // 2.2
@@ -58,7 +58,6 @@ public class StudentManager {
     // 2.4
     public void saveData() {
         studentList.saveData(filename);
-        System.out.format("Saved students to %s \n", filename);
     }
 
     // 2.5
