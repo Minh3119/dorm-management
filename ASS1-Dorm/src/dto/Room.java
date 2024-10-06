@@ -81,8 +81,12 @@ public class Room {
     
     @Override
     public String toString() {
-        return String.format("%-10s|%10s|%10s|%10s|%10s|%10s|%10s",
-                rcode, name, dom, floor, roomType.toString(), booked, price);
+        int beds = 4;
+        if (roomType == RoomType.TRIPLE) {
+            beds = 6;
+        }
+        return String.format("%-10s | %-20s | %-5s | %-5s | %-7s | %-4s | %-6s | %s",
+                rcode, name, dom, floor, roomType.toString(), beds, booked, price);
     }
     
 }

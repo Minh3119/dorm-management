@@ -16,13 +16,14 @@ import util.Node;
 import util.RoomType;
 
 public class RoomList extends MyLinkedList<Room> {
-
+    
     public RoomList() {
     }
 
     // 1.1
-    public void loadData(String filename) {
+    public int loadData(String filename) {
         // data = rcode, name, dom, floor, type, booked, price
+        int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -33,12 +34,16 @@ public class RoomList extends MyLinkedList<Room> {
                     double price = Double.parseDouble(data[6]);
 
                     Room room = new Room(data[0], data[1], data[2], data[3], type, booked, price);
-                    this.addLast(room);
+                    if (searchByCode(data[0]) == null) {
+                        this.addLast(room);
+                        count++;
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return count;
     }
 
     // 1.2
@@ -49,13 +54,24 @@ public class RoomList extends MyLinkedList<Room> {
     // 1.3
     public void display() {
         // display all rooms in the list
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
+                "rcode", "name", "dom", "floor", "type", "beds","booked", "price");
+        System.out.println("-------------------------------------------------------------------------------------------------");
         traverse();
     }
 
     // 1.4
     public void saveData(String filename) {
         // data = rcode, name, dom, floor, type, booked, price
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        loadData(filename);
+        
+        if (this.isEmpty()) {
+            System.out.println("No rooms found.");
+            return;
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
             Node<Room> p = head;
             String[] lineComponents = new String[7];
             while (p != null) {
@@ -75,6 +91,7 @@ public class RoomList extends MyLinkedList<Room> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.format("Saved rooms to %s \n", filename);
     }
 
     // 1.5

@@ -25,8 +25,9 @@ public class BookingList extends MyLinkedList<Booking> {
     }
     
     // 3.1
-    public void loadData(String filename) {
+    public int loadData(String filename) {
         // data = rcode, scode, bdate, ldate, state
+        int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -41,6 +42,7 @@ public class BookingList extends MyLinkedList<Booking> {
                             Integer.parseInt(data[4])
                         );
                         this.addLast(s);
+                        count++;
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -49,6 +51,7 @@ public class BookingList extends MyLinkedList<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return count;
     }
     
     // 3.2
@@ -64,13 +67,24 @@ public class BookingList extends MyLinkedList<Booking> {
     
     // 3.3
     public void display() {
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.format("%-10s | %-10s | %-10s | %-10s | %s\n",
+                "rcode", "scode", "bdate", "ldate", "state");
+        System.out.println("--------------------------------------------------------------------------");
         traverse();
     }
     
     // 3.4
     public void saveData(String filename) {
         // data = rcode, scode, bdate, ldate, state
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        loadData(filename);
+        
+        if (this.isEmpty()) {
+            System.out.println("No bookings found.");
+            return;
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
             Node<Booking> p = head;
             String[] lineComponents = new String[5];
             while (p != null) {
@@ -89,6 +103,7 @@ public class BookingList extends MyLinkedList<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.format("Saved bookings to %s \n", filename);
     }    
     
     // 3.5

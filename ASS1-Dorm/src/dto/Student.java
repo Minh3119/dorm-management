@@ -35,7 +35,7 @@ public class Student {
     
     @Override
     public String toString() {
-        return String.format("%-10s|%10s|%10s",scode, name, byear);
+        return String.format("%-10s | %-20s | %-8s",scode, name, byear);
     }
     
 }

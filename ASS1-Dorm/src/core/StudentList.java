@@ -15,25 +15,34 @@ import util.MyLinkedList;
 import util.Node;
 
 public class StudentList extends MyLinkedList<Student> {
-
+    
     public StudentList() {
     }
 
     // 2.1
-    public void loadData(String filename) {
+    public int loadData(String filename) {
         // data = scode, name, byear
+//        if (dataLoadedFromFile) {
+//            System.out.println("Loaded 0 students.");
+//            return;
+//        }
+        int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length == 3) {
                     Student s = new Student(data[0], data[1], Integer.parseInt(data[2]));
-                    this.addLast(s);
+                    if (searchByCode(data[0]) == null) {
+                        this.addLast(s);
+                        count++;
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return count;
     }
 
     // 2.2
@@ -43,13 +52,23 @@ public class StudentList extends MyLinkedList<Student> {
 
     // 2.3
     public void display() {
+        System.out.println("-------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
+        System.out.println("-------------------------------------------------");
         this.traverse();
     }
 
     // 2.4
     public void saveData(String filename) {
         // data = rcode, name, dom, floor, type, booked, price
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        loadData(filename);
+        
+        if (this.isEmpty()) {
+            System.out.println("No students found.");
+            return;
+        }
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
             Node<Student> p = head;
             String[] lineComponents = new String[3];
             while (p != null) {
@@ -66,6 +85,7 @@ public class StudentList extends MyLinkedList<Student> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.format("Saved students to %s \n", filename);
     }
 
     // 2.5
