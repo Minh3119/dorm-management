@@ -49,9 +49,7 @@ public class RoomList extends MyLinkedList<Room> {
     // 1.3
     public void display() {
         // display all rooms in the list
-        System.out.println();
         traverse();
-        System.out.println();
     }
 
     // 1.4
