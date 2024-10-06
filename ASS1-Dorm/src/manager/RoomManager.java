@@ -90,12 +90,14 @@ public class RoomManager {
 
     // 1.5
     public void searchRoomByCode() {
+        System.out.print("Input room code: ");
         String input = Inputter.getString();
         roomList.searchBookedRoomByCode(input);
     }
 
     // 1.6
     public void deleteRoomByCode() {
+        System.out.print("Input room code: ");
         String input = Inputter.getString();
         roomList.deleteByCode(input);
     }
@@ -116,6 +118,7 @@ public class RoomManager {
     public void createNewRoomBeforeIndex() {
         MyLinkedList<Room> rooms=new MyLinkedList<>();
         Room room = new Room();
+        System.out.print("Input room index number: ");
         int index = Inputter.getInt(0, rooms.size());
         roomList.addBeforeIndex(index, room);
         //roomList.addBeforeIndex(index, room);
@@ -124,6 +127,7 @@ public class RoomManager {
     // 1.10
     public void deleteRoomByIndex() {
         MyLinkedList<Room> rooms=new MyLinkedList<>();
+        System.out.print("Input room index number: ");
         int index=Inputter.getInt(0, rooms.size());
         roomList.deleteByIndex(index);
         System.out.println("Deleted.");
@@ -131,13 +135,15 @@ public class RoomManager {
 
     // 1.11
     public void searchRoomByName() {
-        // ask user for room name and search and print room info     
+        // ask user for room name and search and print room info 
+        System.out.print("Input room name: ");
         String input = Inputter.getString();
         roomList.searchByName(input);
     }
 
     // 1.12
     public void searchBookedRoomByCode() {
+        System.out.print("Input room code: ");
         String input = Inputter.getString();
         roomList.searchBookedRoomByCode(input);
     }
