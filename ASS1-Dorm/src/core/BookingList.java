@@ -62,7 +62,8 @@ public class BookingList extends MyLinkedList<Booking> {
     public void bookRoom(Booking booking) {
         // add booking to the beginning
         this.addFirst(booking);
-        System.out.println("Room booked successfully: " + booking);
+        System.out.println("Room booked successfully: ");
+        display(booking);
     }
     
     // 3.3
@@ -72,6 +73,13 @@ public class BookingList extends MyLinkedList<Booking> {
                 "rcode", "scode", "bdate", "ldate", "state");
         System.out.println("--------------------------------------------------------------------------");
         traverse();
+    }
+    public void display(Booking booking) {
+//        System.out.println("--------------------------------------------------------------------------");
+        System.out.format("%-10s | %-10s | %-10s | %-10s | %s\n",
+                "rcode", "scode", "bdate", "ldate", "state");
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.println(booking);
     }
     
     // 3.4

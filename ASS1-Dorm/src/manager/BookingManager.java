@@ -48,44 +48,56 @@ public class BookingManager {
         
         // get rcode
         System.out.print("Room Code: ");
-        while (room == null) {
+        while (true) {
             rcode = Inputter.getString();
+            if (rcode.equals("0")) {
+                System.out.println("Aborted.");
+                return;
+            }
             room = roomList.searchByCode(rcode);
-            if (room != null) {
-                break;
-            } else {
+            if (room == null) {
                 System.out.print("Room not found, try another room: ");
+                continue;
             }
             
             // check if available beds > 0
             // available beds = total beds - booked
             int availableBeds = room.getBeds() - room.getBooked();
-            if (availableBeds > 0) {
-                break;
-            } else {
+            if (availableBeds == 0) {
                 System.out.print("Room is fully booked (0 beds left), try another room: ");
+                continue;
             }
+            
+            break;
         }
-        
         
 
         // get rname
         System.out.print("Student Code: ");
-        while (student == null) {
+        while (true) {
             scode = Inputter.getString();
-            student = studentList.searchByCode(scode);
-            if (student != null) {
-                break;
-            } else {
-                System.out.print("Student not found, try again: ");
+            if (scode.equals("0")) {
+                System.out.println("Aborted.");
+                return;
             }
+            student = studentList.searchByCode(scode);
+            if (student == null) {
+                System.out.print("Student not found, try again: ");
+                continue;
+            }
+            
+            // if student is not living in any room -> valid
+            if (bookingList.isStudentBooked(scode) == true) {
+                System.out.print("This student already booked a room, try another student: ");
+                continue;
+            }
+            
+            break;
         }
         
         room.increaseBooked();      // increase booked beds by 1
         Booking booking = new Booking(rcode, scode, bdate, null, 1);
-//        bookingList.addToEnd(booking);
         bookingList.bookRoom(booking);
-        System.out.format("Created new booking.\n");
     }
     
     // 3.3
