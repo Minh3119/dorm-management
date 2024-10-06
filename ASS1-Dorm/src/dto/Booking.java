@@ -60,7 +60,7 @@ public class Booking {
     
     @Override
     public String toString() {
-        return String.format("%-10s|%10s|%10s|%10s|%10s",
+        return String.format("%-10s | %-10s | %-10s | %-10s | %s",
                 rcode, scode, 
                 bookDate==null ? "null" : formatter.format(bookDate),
                 leaveDate==null ? "null" : formatter.format(leaveDate),
