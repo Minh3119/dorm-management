@@ -58,6 +58,14 @@ public class Room {
     public String getFloor() {
         return floor;
     }
+    
+    public int getBeds() {
+        int beds = 4;
+        if (roomType == RoomType.TRIPLE) {
+            beds = 6;
+        }
+        return beds;
+    }
 
     public RoomType getRoomType() {
         return roomType;
@@ -74,6 +82,10 @@ public class Room {
     public void setBooked(int booked) {
         this.booked = booked;
     }
+    
+    public void increaseBooked() {
+        this.booked++;
+    }
 
     public void setPrice(double price) {
         this.price = price;
@@ -81,12 +93,9 @@ public class Room {
     
     @Override
     public String toString() {
-        int beds = 4;
-        if (roomType == RoomType.TRIPLE) {
-            beds = 6;
-        }
+        
         return String.format("%-10s | %-20s | %-5s | %-5s | %-7s | %-4s | %-6s | %s",
-                rcode, name, dom, floor, roomType.toString(), beds, booked, price);
+                rcode, name, dom, floor, roomType.toString(), getBeds(), booked, price);
     }
     
 }

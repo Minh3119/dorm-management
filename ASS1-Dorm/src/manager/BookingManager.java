@@ -54,9 +54,20 @@ public class BookingManager {
             if (room != null) {
                 break;
             } else {
-                System.out.print("Room not found, try again: ");
+                System.out.print("Room not found, try another room: ");
+            }
+            
+            // check if available beds > 0
+            // available beds = total beds - booked
+            int availableBeds = room.getBeds() - room.getBooked();
+            if (availableBeds > 0) {
+                break;
+            } else {
+                System.out.print("Room is fully booked (0 beds left), try another room: ");
             }
         }
+        
+        
 
         // get rname
         System.out.print("Student Code: ");
@@ -69,7 +80,8 @@ public class BookingManager {
                 System.out.print("Student not found, try again: ");
             }
         }
-
+        
+        room.increaseBooked();      // increase booked beds by 1
         Booking booking = new Booking(rcode, scode, bdate, null, 1);
 //        bookingList.addToEnd(booking);
         bookingList.bookRoom(booking);

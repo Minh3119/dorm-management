@@ -156,5 +156,18 @@ public class BookingList extends MyLinkedList<Booking> {
         }
         System.out.println("No booking found for the given rcode and scode.");
     }
+    
+    public boolean isStudentBooked(String scode) {
+        // return true if student already booked a room, and haven't left that room yet
+        // else false
+        Node<Booking> p = head;
+        while (p != null) {
+            if (p.getInfo().getScode().equals(scode)) {
+                return true;
+            }
+            p = p.getNext();
+        }
+        return false;
+    }
 }
 
