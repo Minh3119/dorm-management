@@ -6,8 +6,10 @@ package manager;
 
 import core.RoomList;
 import dto.Room;
+import dto.Student;
 import util.Inputter;
 import util.MyLinkedList;
+import util.Node;
 import util.RoomType;
 
 /*
@@ -91,9 +93,15 @@ public class RoomManager {
     // 1.5
     public void searchRoomByCode() {
         System.out.print("Input room code: ");
-        String input = Inputter.getString();
-        roomList.searchBookedRoomByCode(input);
+        String rcode = Inputter.getString();
+        Room roomNode = roomList.searchByCode(rcode);
+
+    if (roomNode != null) {
+        System.out.println("Room found: " + roomNode);
+    } else {
+        System.out.println("Room with code " + rcode + " not found.");
     }
+}
 
     // 1.6
     public void deleteRoomByCode() {

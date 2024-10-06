@@ -66,10 +66,10 @@ public class StudentManager {
     String scode = Inputter.getString();
 
     // Gọi phương thức searchNodeByCode trong lớp StudentList
-    Node<Student> studentNode = studentList.searchNodeByCode(scode);
+    Student studentNode = studentList.searchByCode(scode);
 
     if (studentNode != null) {
-        System.out.println("Student found: " + studentNode.getInfo());
+        System.out.println("Student found: " + studentNode);
     } else {
         System.out.println("Student with code " + scode + " not found.");
     }

@@ -100,7 +100,7 @@ public class StudentList extends MyLinkedList<Student> {
         return null;
     }
     
-    public Node searchNodeByCode(String scode) {
+    private Node searchNodeByCode(String scode) {
         Node<Student> p = head;
         while (p != null) {
             if (p.getInfo().getScode().equals(scode)) {
