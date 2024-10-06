@@ -6,7 +6,6 @@ package manager;
 
 import core.RoomList;
 import dto.Room;
-import dto.Student;
 import util.Inputter;
 import util.MyLinkedList;
 import util.Node;
@@ -22,7 +21,7 @@ public class RoomManager {
 
     static String filename = "src/resources/rooms.txt";
 
-    private RoomList roomList;
+    private final RoomList roomList;
 
     public RoomManager(RoomList roomList) {
         this.roomList = roomList;
@@ -41,7 +40,7 @@ public class RoomManager {
         String rcode, rname, dom, floor;
         RoomType roomType;
         double price;
-        int booked;
+//        int booked;
 
         // get rcode
         System.out.print("Room ID: ");
@@ -63,14 +62,14 @@ public class RoomManager {
         roomType = Inputter.getRoomType();
 
         // get amount of booked beds in the room
-        System.out.println("Number of booked beds: ");
-        booked = Inputter.getInt(0, roomType.getBeds());
+//        System.out.println("Number of booked beds: ");
+//        booked = Inputter.getInt(0, roomType.getBeds());
 
         // get room's price
         System.out.println("Room's price: ");
         price = Inputter.getPrice();
 
-        Room room = new Room(rcode, rname, dom, floor, roomType, booked, price);
+        Room room = new Room(rcode, rname, dom, floor, roomType, 0, price);
         roomList.addToEnd(room);
         System.out.format("Created new room.\n");
     }
@@ -87,7 +86,7 @@ public class RoomManager {
 
     // 1.4
     public void saveData() {
-        roomList.saveData(filename);        
+        roomList.saveData(filename);
     }
 
     // 1.5
@@ -96,12 +95,12 @@ public class RoomManager {
         String rcode = Inputter.getString();
         Room roomNode = roomList.searchByCode(rcode);
 
-    if (roomNode != null) {
-        System.out.println("Room found: " + roomNode);
-    } else {
-        System.out.println("Room with code " + rcode + " not found.");
+        if (roomNode != null) {
+            System.out.println("Room found: " + roomNode);
+        } else {
+            System.out.println("Room with code " + rcode + " not found.");
+        }
     }
-}
 
     // 1.6
     public void deleteRoomByCode() {
@@ -124,7 +123,7 @@ public class RoomManager {
 
     // 1.9
     public void createNewRoomBeforeIndex() {
-        MyLinkedList<Room> rooms=new MyLinkedList<>();
+        MyLinkedList<Room> rooms = new MyLinkedList<>();
         Room room = new Room();
         System.out.print("Input room index number: ");
         int index = Inputter.getInt(0, rooms.size());
@@ -134,9 +133,9 @@ public class RoomManager {
 
     // 1.10
     public void deleteRoomByIndex() {
-        MyLinkedList<Room> rooms=new MyLinkedList<>();
+        MyLinkedList<Room> rooms = new MyLinkedList<>();
         System.out.print("Input room index number: ");
-        int index=Inputter.getInt(0, rooms.size());
+        int index = Inputter.getInt(0, rooms.size());
         roomList.deleteByIndex(index);
         System.out.println("Deleted.");
     }
@@ -148,13 +147,11 @@ public class RoomManager {
         String name = Inputter.getString();
         Node<Room> roomNode = roomList.searchByName(name);
         if (roomNode != null) {
-        System.out.println("Room found: " + roomNode.getInfo());
-    } else {
-        System.out.println("Data not found");
+            System.out.println("Room found: " + roomNode.getInfo());
+        } else {
+            System.out.println("Data not found");
+        }
     }
-    }
-  
-
 
     // 1.12
     public void searchBookedRoomByCode() {

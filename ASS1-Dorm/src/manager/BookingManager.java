@@ -19,9 +19,9 @@ public class BookingManager {
     static String filename = "src/resources/bookings.txt";
     public static String dateFormat = "dd/MM/yyyy";
     
-    private BookingList bookingList;
-    private RoomList roomList;
-    private StudentList studentList;
+    private final BookingList bookingList;
+    private final RoomList roomList;
+    private final StudentList studentList;
 
     public BookingManager(BookingList bookingList, RoomList roomList, StudentList studentList) {
         this.bookingList = bookingList;

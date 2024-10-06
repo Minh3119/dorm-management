@@ -15,7 +15,7 @@ public class StudentManager {
 
     static String filename = "src/resources/students.txt";
 
-    private StudentList studentList;
+    private final StudentList studentList;
 
     public StudentManager(StudentList studentList) {
         this.studentList = studentList;
@@ -62,19 +62,18 @@ public class StudentManager {
 
     // 2.5
     public void searchStudentByCode() {
-    System.out.print("Enter student code: ");
-    String scode = Inputter.getString();
+        System.out.print("Enter student code: ");
+        String scode = Inputter.getString();
 
-    // Gọi phương thức searchNodeByCode trong lớp StudentList
-    Student studentNode = studentList.searchByCode(scode);
+        // Gọi phương thức searchNodeByCode trong lớp StudentList
+        Student studentNode = studentList.searchByCode(scode);
 
-    if (studentNode != null) {
-        System.out.println("Student found: " + studentNode);
-    } else {
-        System.out.println("Student with code " + scode + " not found.");
+        if (studentNode != null) {
+            System.out.println("Student found: " + studentNode);
+        } else {
+            System.out.println("Student with code " + scode + " not found.");
+        }
     }
-}
-
 
     // 2.6
     public void deleteStudentByCode() {

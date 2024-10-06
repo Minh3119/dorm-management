@@ -62,9 +62,9 @@ public class Main {
     };
     
     
-    private static BookingList bookingList = new BookingList();
-    private static StudentList studentList = new StudentList();
-    private static RoomList roomList = new RoomList();
+    private final static BookingList bookingList = new BookingList();
+    private final static StudentList studentList = new StudentList();
+    private final static RoomList roomList = new RoomList();
     
     
     
