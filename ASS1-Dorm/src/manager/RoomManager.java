@@ -17,7 +17,7 @@ Main -> manager.BookingManager -> core.BookingList -> dto.Booking
  */
 public class RoomManager {
 
-    static String filename = "resources/rooms.txt";
+    static String filename = "src/resources/rooms.txt";
 
     private RoomList roomList;
 
@@ -79,6 +79,7 @@ public class RoomManager {
     // 1.4
     public void saveData() {
         roomList.saveData(filename);
+        System.out.format("Saved rooms to %s \n", filename);
     }
 
     // 1.5

@@ -79,6 +79,10 @@ public class Room {
         this.price = price;
     }
     
-    
+    @Override
+    public String toString() {
+        return String.format("%-10s|%10s|%10s|%10s|%10s|%10s|%10s",
+                rcode, name, dom, floor, roomType.toString(), booked, price);
+    }
     
 }

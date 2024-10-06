@@ -190,7 +190,7 @@ public class Main {
                     manager.searchStudentByName();
                     break;
                 case 8:
-                    manager.searchBookedRoomByStudentCode();
+                    manager.searchBookedRoomByStudentCode(bookingList);
                     break;
             }
         }

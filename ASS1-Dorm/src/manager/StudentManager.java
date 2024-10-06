@@ -4,11 +4,11 @@
  */
 package manager;
 
+import core.BookingList;
 import core.StudentList;
 import dto.Room;
 import dto.Student;
 import java.util.Scanner;
-import util.MyLinkedList;
 import util.Node;
 public class StudentManager {
     
@@ -117,7 +117,7 @@ public class StudentManager {
     }
     
     // 2.8
-    public void searchBookedRoomByStudentCode() {
+    public void searchBookedRoomByStudentCode(BookingList bookingList) {
           Scanner scanner = new Scanner(System.in);
     
     System.out.print("Enter student code: ");
@@ -126,7 +126,7 @@ public class StudentManager {
     Node<Student> studentNode = studentList.get(new Student(scode, "", 0));
     
     if (studentNode != null) {
-        Room bookedRoom = studentNode.getInfo().getBookedRoom();
+        Room bookedRoom = studentNode.getInfo().bookedRoom;
         if (bookedRoom != null) {
             System.out.println("Student with code " + scode + " has booked room: " + bookedRoom.getRcode() + ", " + bookedRoom.getName());
         } else {

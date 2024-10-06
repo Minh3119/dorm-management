@@ -15,7 +15,7 @@ public class BookingList extends MyLinkedList<Booking> {
     
     // 3.1
     public void loadData(String filename) {
-        // load data tu file txt
+        
     }
     
     // 3.2

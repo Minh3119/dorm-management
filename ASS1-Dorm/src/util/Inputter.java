@@ -13,6 +13,15 @@ public class Inputter {
     
     private static Scanner scanner = new Scanner(System.in);
     
+    public static RoomType convertsToRoomType(String s) {
+        if (s.compareTo("DOUBLE") == 0) {
+            return RoomType.DOUBLE;
+        } else if (s.compareTo("TRIPLE") == 0) {
+            return RoomType.TRIPLE;
+        }
+        return null;
+    }
+    
     public static float getPrice() {
         while (true) {
             String s = scanner.nextLine();

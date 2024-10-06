@@ -17,7 +17,7 @@ public class StudentList extends MyLinkedList<Student> {
     
     // 2.1
     public void loadData(String filename) {
-          
+        
     }
     
     // 2.2
@@ -80,7 +80,7 @@ public class StudentList extends MyLinkedList<Student> {
     }
     
     // 2.8
-    public void searchStudentRoom(String scode) {
+    public void searchStudentRoom(String scode, BookingList bookingList) {
          // Search for the student by student code
     Node<Student> studentNode = searchByCode(scode);
     

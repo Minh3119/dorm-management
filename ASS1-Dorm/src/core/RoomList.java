@@ -5,10 +5,15 @@
 package core;
 
 import dto.Room;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
 import util.MyLinkedList;
 import java.io.FileWriter;
 import java.io.IOException;
+import util.Inputter;
 import util.Node;
+import util.RoomType;
 
 public class RoomList extends MyLinkedList<Room> {
 
@@ -17,23 +22,25 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.1
     public void loadData(String filename) {
-//        String fileName = "RoomList.txt";
-//
-//        try {
-//            File file = new File(fileName);
-//            
-//
-//            try (
-//                    Scanner scanner = new Scanner(file)) {
-//                while (scanner.hasNextLine()) {
-//                    String line = scanner.nextLine();
-//                    System.out.println(line);
-//                }
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//            System.out.println("An error occurred: File not found.");
-//        }
+        
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                // data = rcode, name, dom, floor, type, booked, price
+                if (data.length == 7) {
+                    System.out.println("[DEBUG] roomType = " + data[4]);
+                    RoomType type = Inputter.convertsToRoomType(data[4]);
+                    int booked = Integer.parseInt(data[5]);
+                    double price = Double.parseDouble(data[6]);
+
+                    Room room = new Room(data[0], data[1], data[2], data[3], type, booked, price);
+                    this.addLast(room);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 1.2
@@ -44,26 +51,34 @@ public class RoomList extends MyLinkedList<Room> {
     // 1.3
     public void display() {
         // display all rooms in the list
-        System.out.println("");
-
+        System.out.println();
+        traverse();
+        System.out.println();
     }
 
     // 1.4
     public void saveData(String filename) {
-        String data = ".";
-
-        String fileName = "resources/room.txt";
-
-        try {
-            try ( // Create a FileWriter object
-                    FileWriter writer = new FileWriter(fileName)) {
-                // Write data to the file
-                writer.write(data);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            Node<Room> p = head;
+            String[] lineComponents = new String[7];
+            // data = rcode, name, dom, floor, type, booked, price
+            while (p != null) {
+                Room room = p.getInfo();
+                lineComponents[0] = room.getRcode();
+                lineComponents[1] = room.getName();
+                lineComponents[2] = room.getDom();
+                lineComponents[3] = room.getFloor();
+                lineComponents[4] = room.getRoomType().toString();
+                System.out.println("[DEBUG] roomType = " + lineComponents[4]);
+                lineComponents[5] = String.valueOf(room.getBooked());
+                lineComponents[6] = String.valueOf(room.getPrice());
+                String line = String.join(",", lineComponents);
+                writer.write(line);
+                writer.newLine();
+                p = p.getNext();
             }
-
-            System.out.println("Data saved " + fileName);
         } catch (IOException e) {
-            System.out.println("An error occurred while saving data.");
+            e.printStackTrace();
         }
     }
 
