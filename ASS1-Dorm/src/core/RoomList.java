@@ -79,22 +79,27 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.5
     public Room searchByCode(String rcode) {
-        // search the room by rcode, return the found room, else return null
-//        get all the rooms.
-//        loop through using size() to getRcode and compare the .getRcode() ===rcode
-        MyLinkedList<Room> room = new MyLinkedList<>();
-        Room rooms = new Room();
-        for (int i = 0; i < room.size(); i++) {
-            String code = rooms.getRcode();
-            if (code == null ? rcode == null : code.equals(rcode)) {
-                return rooms;
+        Node<Room> p = head;
+        while (p != null) {
+            if (p.getInfo().getRcode().equals(rcode)) {
+                return p.getInfo();
             }
-            else{
-                System.out.println("Data not found");
-            }
+            p = p.getNext();
         }
         return null;
     }
+    
+    private Node searchNodeByCode(String rcode) {
+        Node<Room> p = head;
+        while (p != null) {
+            if (p.getInfo().getRcode().equals(rcode)) {
+                return p;
+            }
+            p = p.getNext();
+        }
+        return null;
+    }
+    
 
     // 1.6
     public void deleteByCode(String rcode) {

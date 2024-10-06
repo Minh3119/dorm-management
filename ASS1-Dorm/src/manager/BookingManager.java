@@ -6,19 +6,27 @@
 package manager;
 
 import core.BookingList;
+import core.RoomList;
+import core.StudentList;
 import dto.Booking;
+import dto.Room;
+import dto.Student;
 import java.util.Date;
 import util.Inputter;
 
 public class BookingManager {
     
     static String filename = "src/resources/bookings.txt";
-    static String dateFormat = "dd/MM/yyyy";
+    public static String dateFormat = "dd/MM/yyyy";
     
     private BookingList bookingList;
+    private RoomList roomList;
+    private StudentList studentList;
 
-    public BookingManager(BookingList bookingList) {
+    public BookingManager(BookingList bookingList, RoomList roomList, StudentList studentList) {
         this.bookingList = bookingList;
+        this.roomList = roomList;
+        this.studentList = studentList;
     }
     
     // 3.1
@@ -31,16 +39,36 @@ public class BookingManager {
     public void bookRoom() {
         System.out.println("Please insert infomation for the new booking:");
 
-        String rcode, scode;
+        String rcode = null;
+        String scode = null;
         Date bdate = new Date();
-
+        
+        Room room = null;
+        Student student = null;
+        
         // get rcode
         System.out.print("Room Code: ");
-        rcode = Inputter.getString();
+        while (room == null) {
+            rcode = Inputter.getString();
+            room = roomList.searchByCode(rcode);
+            if (room != null) {
+                break;
+            } else {
+                System.out.print("Room not found, try again: ");
+            }
+        }
 
         // get rname
         System.out.print("Student Code: ");
-        scode = Inputter.getString();
+        while (student == null) {
+            scode = Inputter.getString();
+            student = studentList.searchByCode(scode);
+            if (student != null) {
+                break;
+            } else {
+                System.out.print("Student not found, try again: ");
+            }
+        }
 
         Booking booking = new Booking(rcode, scode, bdate, null, 1);
         bookingList.addToEnd(booking);
@@ -49,7 +77,12 @@ public class BookingManager {
     
     // 3.3
     public void display() {
-        
+        if (bookingList.isEmpty()) {
+            System.out.println("No bookings found.");
+        } else {
+            System.out.println("List of bookings:");
+            bookingList.display();
+        }
     }
     
     // 3.4

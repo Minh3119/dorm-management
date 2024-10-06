@@ -5,9 +5,12 @@
 
 package dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Booking {
+    
+    static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     
     private String rcode;
     private String scode;
@@ -55,5 +58,13 @@ public class Booking {
         this.state = state;
     }
     
+    @Override
+    public String toString() {
+        return String.format("%-10s|%10s|%10s|%10s|%10s",
+                rcode, scode, 
+                bookDate==null ? "null" : formatter.format(bookDate),
+                leaveDate==null ? "null" : formatter.format(leaveDate),
+                state);
+    }
     
 }

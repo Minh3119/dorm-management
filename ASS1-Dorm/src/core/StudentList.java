@@ -69,10 +69,21 @@ public class StudentList extends MyLinkedList<Student> {
     }
 
     // 2.5
-    public Node searchByCode(String scode) {
-        Node p = head;
+    public Student searchByCode(String scode) {
+        Node<Student> p = head;
         while (p != null) {
-            if (p.getInfo() == scode) {
+            if (p.getInfo().getScode().equals(scode)) {
+                return p.getInfo();
+            }
+            p = p.getNext();
+        }
+        return null;
+    }
+    
+    private Node searchNodeByCode(String scode) {
+        Node<Student> p = head;
+        while (p != null) {
+            if (p.getInfo().getScode().equals(scode)) {
                 return p;
             }
             p = p.getNext();
@@ -82,7 +93,7 @@ public class StudentList extends MyLinkedList<Student> {
 
     // 2.6
     public void deleteByCode(String scode) {
-        Node<Student> p = searchByCode(scode);
+        Node<Student> p = searchNodeByCode(scode);
         if (p != null) {
             this.remove(p);
             System.out.println("Student with code " + scode + " has been deleted.");
@@ -110,7 +121,7 @@ public class StudentList extends MyLinkedList<Student> {
     // 2.8
     public void searchStudentRoom(String scode, BookingList bookingList) {
         // Search for the student by student code
-        Node<Student> studentNode = searchByCode(scode);
+        Node<Student> studentNode = searchNodeByCode(scode);
 
         if (studentNode != null) {
 

@@ -198,7 +198,7 @@ public class Main {
     
     // need implementations
     static void displayMenuBooking() {
-        BookingManager manager = new BookingManager(bookingList);
+        BookingManager manager = new BookingManager(bookingList, roomList, studentList);
         Menu menu = new Menu("Booking options", "Your choice: ");
         menu.addAll(Arrays.asList(BOOKING_OPTIONS));
         

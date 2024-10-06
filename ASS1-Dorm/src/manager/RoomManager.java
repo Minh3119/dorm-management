@@ -74,7 +74,12 @@ public class RoomManager {
 
     // 1.3
     public void display() {
-        roomList.display();
+        if (roomList.isEmpty()) {
+            System.out.println("No rooms found.");
+        } else {
+            System.out.println("List of rooms:");
+            roomList.display();
+        }
     }
 
     // 1.4

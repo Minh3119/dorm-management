@@ -35,8 +35,8 @@ public class BookingList extends MyLinkedList<Booking> {
                         Booking s = new Booking(
                             data[0], 
                             data[1], 
-                            data[2]=="null" ? null : formatter.parse(data[2]),
-                            data[3]=="null" ? null : formatter.parse(data[3]),
+                            data[2].equals("null") ? null : formatter.parse(data[2]),
+                            data[3].equals("null") ? null : formatter.parse(data[3]),
                             Integer.parseInt(data[4])
                         );
                         this.addLast(s);
@@ -57,6 +57,7 @@ public class BookingList extends MyLinkedList<Booking> {
     
     // 3.3
     public void display() {
+        traverse();
     }
     
     // 3.4
@@ -69,8 +70,8 @@ public class BookingList extends MyLinkedList<Booking> {
                 Booking s = p.getInfo();
                 lineComponents[0] = s.getRcode();
                 lineComponents[1] = s.getScode();
-                lineComponents[2] = formatter.format(s.getBookDate());
-                lineComponents[3] = formatter.format(s.getLeaveDate());
+                lineComponents[2] = s.getBookDate()==null ? "null" : formatter.format(s.getBookDate());
+                lineComponents[3] = s.getLeaveDate()==null ? "null" : formatter.format(s.getLeaveDate());
                 lineComponents[4] = String.valueOf(s.getState());
                 
                 String line = String.join(",", lineComponents);
