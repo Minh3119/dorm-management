@@ -8,8 +8,8 @@ import core.BookingList;
 import core.StudentList;
 import dto.Booking;
 import dto.Student;
-import java.util.Scanner;
 import util.Node;
+import util.Inputter;
 
 public class StudentManager {
 
@@ -29,16 +29,16 @@ public class StudentManager {
 
     // 2.2
     public void createNewStudentAtEnd() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter student code: ");
-        String scode = scanner.nextLine();
+        String scode = Inputter.getString();
 
         System.out.print("Enter student name: ");
-        String name = scanner.nextLine();
+        String name = Inputter.getString();
 
         System.out.print("Enter birth year: ");
-        int byear = scanner.nextInt();
+        int byear = Inputter.getInt(1800, 2024);
 
         Student student = new Student(scode, name, byear);
         studentList.addToEnd(student);
@@ -62,10 +62,10 @@ public class StudentManager {
 
     // 2.5
     public void searchStudentByCode() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter student code: ");
-        String scode = scanner.nextLine();
+        String scode = Inputter.getString();
 
         Node<Student> studentNode = studentList.get(new Student(scode, "", 0));
 
@@ -78,10 +78,10 @@ public class StudentManager {
 
     // 2.6
     public void deleteStudentByCode() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter student code to delete: ");
-        String scode = scanner.nextLine();
+        String scode = Inputter.getString();
 
         Node<Student> studentNode = studentList.get(new Student(scode, "", 0));
 
@@ -95,10 +95,10 @@ public class StudentManager {
 
     // 2.7
     public void searchStudentByName() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter student name: ");
-        String name = scanner.nextLine();
+        String name = Inputter.getString();
 
         Node<Student> p = studentList.head;
         boolean found = false;
@@ -118,9 +118,9 @@ public class StudentManager {
 
     // 2.8
     public void searchBookedRoomByStudentCode(BookingList bookingList) {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("Enter student code: ");
-        String scode = scanner.nextLine();
+        String scode = Inputter.getString();
 
         boolean found = false;
         Node<Booking> current = bookingList.head;

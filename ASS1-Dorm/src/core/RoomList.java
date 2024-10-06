@@ -156,7 +156,6 @@ public class RoomList extends MyLinkedList<Room> {
     public void deleteByIndex(int index) {
         // delete a room by index
         MyLinkedList<Room> room = new MyLinkedList<>();
-        Room rooms = new Room();
         int count = 0;
         for (int i = 0; i < room.size(); i++) {
             count++;
