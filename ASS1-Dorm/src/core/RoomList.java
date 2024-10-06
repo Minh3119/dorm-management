@@ -29,7 +29,6 @@ public class RoomList extends MyLinkedList<Room> {
                 String[] data = line.split(",");
                 // data = rcode, name, dom, floor, type, booked, price
                 if (data.length == 7) {
-                    System.out.println("[DEBUG] roomType = " + data[4]);
                     RoomType type = Inputter.convertsToRoomType(data[4]);
                     int booked = Integer.parseInt(data[5]);
                     double price = Double.parseDouble(data[6]);
@@ -69,7 +68,6 @@ public class RoomList extends MyLinkedList<Room> {
                 lineComponents[2] = room.getDom();
                 lineComponents[3] = room.getFloor();
                 lineComponents[4] = room.getRoomType().toString();
-                System.out.println("[DEBUG] roomType = " + lineComponents[4]);
                 lineComponents[5] = String.valueOf(room.getBooked());
                 lineComponents[6] = String.valueOf(room.getPrice());
                 String line = String.join(",", lineComponents);
