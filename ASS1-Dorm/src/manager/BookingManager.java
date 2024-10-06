@@ -71,7 +71,8 @@ public class BookingManager {
         }
 
         Booking booking = new Booking(rcode, scode, bdate, null, 1);
-        bookingList.addToEnd(booking);
+//        bookingList.addToEnd(booking);
+        bookingList.bookRoom(booking);
         System.out.format("Created new booking.\n");
     }
     
@@ -93,12 +94,17 @@ public class BookingManager {
     
     // 3.5
     public void sort() {
-        
+        bookingList.sort();
+        System.out.println("Bookings sorted by rcode and scode.");
     }
     
     // 3.6
     public void leaveRoom() {
-        
+        System.out.print("Enter Room Code: ");
+        String rcode = Inputter.getString();
+        System.out.print("Enter Student Code: ");
+        String scode = Inputter.getString();
+        bookingList.leaveRoom(rcode, scode);
     }
     
 }

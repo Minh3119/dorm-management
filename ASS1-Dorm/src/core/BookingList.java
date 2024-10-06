@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import util.MyLinkedList;
 import util.Node;
 
@@ -51,8 +52,14 @@ public class BookingList extends MyLinkedList<Booking> {
     }
     
     // 3.2
-    public void addToEnd(Booking booking) {
-        this.addLast(booking);
+//    public void addToEnd(Booking booking) {
+//        this.addLast(booking);
+//    }
+    
+    public void bookRoom(Booking booking) {
+        // add booking to the beginning
+        this.addFirst(booking);
+        System.out.println("Room booked successfully: " + booking);
     }
     
     // 3.3
@@ -88,9 +95,23 @@ public class BookingList extends MyLinkedList<Booking> {
     public void sort(String rcode, String scode) {
         // sort + display result
         // rcode: descending, then scode descending
+        
     }
     
     // 3.6
     public void leaveRoom(String rcode, String scode) {
+        Node<Booking> current = head;
+        while (current != null) {
+            Booking booking = current.getInfo();
+            if (booking.getRcode().equals(rcode) && booking.getScode().equals(scode) && booking.getState() == 1) {
+                booking.setState(0);
+                booking.setLeaveDate(new Date());
+                System.out.println("Booking updated: " + booking);
+                return;
+            }
+            current = current.getNext();
+        }
+        System.out.println("No booking found for the given rcode and scode.");
     }
 }
+
