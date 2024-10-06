@@ -67,6 +67,10 @@ public class BookingList extends MyLinkedList<Booking> {
     
     // 3.3
     public void display() {
+        System.out.println("--------------------------------------------------------------------------");
+        System.out.format("%-10s | %-10s | %-10s | %-10s | %s\n",
+                "rcode", "scode", "bdate", "ldate", "state");
+        System.out.println("--------------------------------------------------------------------------");
         traverse();
     }
     

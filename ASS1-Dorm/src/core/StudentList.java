@@ -52,6 +52,9 @@ public class StudentList extends MyLinkedList<Student> {
 
     // 2.3
     public void display() {
+        System.out.println("-------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
+        System.out.println("-------------------------------------------------");
         this.traverse();
     }
 

@@ -54,6 +54,10 @@ public class RoomList extends MyLinkedList<Room> {
     // 1.3
     public void display() {
         // display all rooms in the list
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
+                "rcode", "name", "dom", "floor", "type", "beds","booked", "price");
+        System.out.println("-------------------------------------------------------------------------------------------------");
         traverse();
     }
 
