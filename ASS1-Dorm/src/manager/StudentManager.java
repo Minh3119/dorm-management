@@ -7,14 +7,13 @@ package manager;
 import core.BookingList;
 import core.StudentList;
 import dto.Booking;
-import dto.Room;
 import dto.Student;
 import java.util.Scanner;
 import util.Node;
 
 public class StudentManager {
 
-    static String filename = "resources/students.txt";
+    static String filename = "src/resources/students.txt";
 
     private StudentList studentList;
 
@@ -25,7 +24,7 @@ public class StudentManager {
     // 2.1
     public void loadData() {
         studentList.loadData(filename);
-        System.out.println("aksldjsklj fuck this shjt");
+        System.out.format("Loaded students from %s.\n", filename);
     }
 
     // 2.2
@@ -59,7 +58,7 @@ public class StudentManager {
     // 2.4
     public void saveData() {
         studentList.saveData(filename);
-        System.out.println("do smth pls");
+        System.out.format("Saved students to %s \n", filename);
     }
 
     // 2.5

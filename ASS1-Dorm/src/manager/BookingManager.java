@@ -9,7 +9,7 @@ import core.BookingList;
 
 public class BookingManager {
     
-    static String filename = "resources/bookings.txt";
+    static String filename = "src/resources/bookings.txt";
     
     private BookingList bookingList;
 

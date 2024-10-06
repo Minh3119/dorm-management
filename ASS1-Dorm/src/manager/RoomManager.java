@@ -64,6 +64,7 @@ public class RoomManager {
         booked = Inputter.getInt(0, roomType.getBeds());
 
         // get room's price
+        System.out.println("Room's price: ");
         price = Inputter.getPrice();
 
         Room room = new Room(rcode, rname, dom, floor, roomType, booked, price);

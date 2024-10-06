@@ -5,8 +5,12 @@
 package core;
 
 import dto.Booking;
-import dto.Room;
 import dto.Student;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import util.MyLinkedList;
 import util.Node;
 
@@ -17,9 +21,19 @@ public class StudentList extends MyLinkedList<Student> {
 
     // 2.1
     public void loadData(String filename) {
-         << << << < HEAD
-                == == ==
-                =  >>> >>> > ddfbeec584930256296988a8a883a22fe0a587c6
+        // data = scode, name, byear
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 3) {
+                    Student s = new Student(data[0], data[1], Integer.parseInt(data[2]));
+                    this.addLast(s);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 2.2
@@ -29,16 +43,29 @@ public class StudentList extends MyLinkedList<Student> {
 
     // 2.3
     public void display() {
-        if (this.isEmpty()) {
-            System.out.println("The list is empty.");
-            return;
-        }
         this.traverse();
     }
 
     // 2.4
     public void saveData(String filename) {
-
+        // data = rcode, name, dom, floor, type, booked, price
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            Node<Student> p = head;
+            String[] lineComponents = new String[3];
+            while (p != null) {
+                Student s = p.getInfo();
+                lineComponents[0] = s.getScode();
+                lineComponents[1] = s.getName();
+                lineComponents[2] = String.valueOf(s.getByear());
+                
+                String line = String.join(",", lineComponents);
+                writer.write(line);
+                writer.newLine();
+                p = p.getNext();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 2.5

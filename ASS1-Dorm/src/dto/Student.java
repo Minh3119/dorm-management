@@ -33,5 +33,9 @@ public class Student {
         this.byear = byear;
     }
     
+    @Override
+    public String toString() {
+        return String.format("%-10s|%10s|%10s",scode, name, byear);
+    }
     
 }

@@ -22,12 +22,11 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.1
     public void loadData(String filename) {
-        
+        // data = rcode, name, dom, floor, type, booked, price
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                // data = rcode, name, dom, floor, type, booked, price
                 if (data.length == 7) {
                     RoomType type = Inputter.convertsToRoomType(data[4]);
                     int booked = Integer.parseInt(data[5]);
@@ -57,10 +56,10 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.4
     public void saveData(String filename) {
+        // data = rcode, name, dom, floor, type, booked, price
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             Node<Room> p = head;
             String[] lineComponents = new String[7];
-            // data = rcode, name, dom, floor, type, booked, price
             while (p != null) {
                 Room room = p.getInfo();
                 lineComponents[0] = room.getRcode();
