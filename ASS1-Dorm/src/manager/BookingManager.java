@@ -17,7 +17,7 @@ import util.Node;
 
 public class BookingManager {
     
-    static String filename = "src/resources/bookings.txt";
+    static String filename = "resources/bookings.txt";
     public static String dateFormat = "dd/MM/yyyy";
     
     private final BookingList bookingList;

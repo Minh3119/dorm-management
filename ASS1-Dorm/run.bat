@@ -1,0 +1,1 @@
+java -jar dist\ASS1-Dorm.jar
