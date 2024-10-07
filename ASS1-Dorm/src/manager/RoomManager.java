@@ -116,13 +116,71 @@ public class RoomManager {
 
     // 1.8
     public void createNewRoomAtBeginning() {
-        Room room = new Room();
+        System.out.println("Please insert infomation for the new room:");
+
+        String rcode, rname, dom, floor;
+        RoomType roomType;
+        double price;
+
+        // get rcode
+        System.out.print("Room ID: ");
+        rcode = Inputter.getString();
+
+        // get rname
+        System.out.print("Room Name: ");
+        rname = Inputter.getString();
+
+        // get dom
+        System.out.print("Room's dorm name: ");
+        dom = Inputter.getString();
+
+        // get floor
+        System.out.print("Room's at which floor: ");
+        floor = Inputter.getString();
+
+        // get room type DOUBLE or TRIPLE, Inputter can handle this
+        roomType = Inputter.getRoomType();
+
+        // get room's price
+        System.out.println("Room's price: ");
+        price = Inputter.getPrice();
+
+        Room room = new Room(rcode, rname, dom, floor, roomType, 0, price);
         roomList.addToBeginning(room);
     }
 
     // 1.9
     public void createNewRoomBeforeIndex() {
-        Room room = new Room();
+        System.out.println("Please insert infomation for the new room:");
+
+        String rcode, rname, dom, floor;
+        RoomType roomType;
+        double price;
+
+        // get rcode
+        System.out.print("Room ID: ");
+        rcode = Inputter.getString();
+
+        // get rname
+        System.out.print("Room Name: ");
+        rname = Inputter.getString();
+
+        // get dom
+        System.out.print("Room's dorm name: ");
+        dom = Inputter.getString();
+
+        // get floor
+        System.out.print("Room's at which floor: ");
+        floor = Inputter.getString();
+
+        // get room type DOUBLE or TRIPLE, Inputter can handle this
+        roomType = Inputter.getRoomType();
+
+        // get room's price
+        System.out.println("Room's price: ");
+        price = Inputter.getPrice();
+
+        Room room = new Room(rcode, rname, dom, floor, roomType, 0, price);
         System.out.print("Input room index number: ");
         int index = Inputter.getInt(0, roomList.size());
         roomList.addBeforeIndex(index, room);
