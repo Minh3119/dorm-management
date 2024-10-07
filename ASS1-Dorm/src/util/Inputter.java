@@ -44,7 +44,16 @@ public class Inputter {
 //    }
     
     public static String getString() {
-        return scanner.nextLine();
+        String s;
+        while (true) {
+            s = scanner.nextLine();
+            if (s.isEmpty()) {
+                System.out.print("Try again: ");
+            } else {
+                break;
+            }
+        }
+        return s;
     }
     
     public static RoomType getRoomType() {

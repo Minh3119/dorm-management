@@ -42,7 +42,7 @@ public class RoomManager {
 //        int booked;
 
         // get rcode
-        System.out.print("Room ID: ");
+        System.out.print("Room Code: ");
         rcode = Inputter.getString();
 
         // get rname
@@ -92,10 +92,11 @@ public class RoomManager {
     public void searchRoomByCode() {
         System.out.print("Input room code: ");
         String rcode = Inputter.getString();
-        Room roomNode = roomList.searchByCode(rcode);
+        Room room = roomList.searchByCode(rcode);
 
-        if (roomNode != null) {
-            System.out.println("Room found: " + roomNode);
+        if (room != null) {
+            System.out.println("Room found: ");
+            roomList.display(room);
         } else {
             System.out.println("Room with code " + rcode + " not found.");
         }
@@ -123,7 +124,7 @@ public class RoomManager {
         double price;
 
         // get rcode
-        System.out.print("Room ID: ");
+        System.out.print("Room Code: ");
         rcode = Inputter.getString();
 
         // get rname
@@ -158,7 +159,7 @@ public class RoomManager {
         double price;
 
         // get rcode
-        System.out.print("Room ID: ");
+        System.out.print("Room Code: ");
         rcode = Inputter.getString();
 
         // get rname

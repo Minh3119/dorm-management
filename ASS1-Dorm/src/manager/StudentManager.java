@@ -30,7 +30,15 @@ public class StudentManager {
     // 2.2
     public void createNewStudentAtEnd() {
         System.out.print("Enter student code: ");
-        String scode = Inputter.getString();
+        String scode;
+        while (true) {
+            scode = Inputter.getString();
+            if (studentList.searchByCode(scode) == null) {
+                break;
+            } else {
+                System.out.print("Student with code " + scode + " already exists. Try again: ");
+            }
+        }
 
         System.out.print("Enter student name: ");
         String name = Inputter.getString();

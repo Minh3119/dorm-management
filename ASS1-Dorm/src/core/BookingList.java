@@ -54,11 +54,6 @@ public class BookingList extends MyLinkedList<Booking> {
         return count;
     }
     
-    // 3.2
-//    public void addToEnd(Booking booking) {
-//        this.addLast(booking);
-//    }
-    
     public void bookRoom(Booking booking) {
         // add booking to the beginning
         this.addFirst(booking);
