@@ -33,7 +33,7 @@ public class BookingManager {
     // 3.1
     public void loadData() {
         int count = bookingList.loadData(filename);
-        System.out.format("Loaded %d bookings from.\n", count);
+        System.out.format("Loaded %d bookings.\n", count);
     }
     
     // 3.2
