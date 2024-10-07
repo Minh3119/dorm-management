@@ -99,22 +99,6 @@ public class StudentManager {
     public void searchBookedRoomByStudentCode(BookingList bookingList) {
         System.out.print("Enter student code: ");
         String scode = Inputter.getString();
-
-        boolean found = false;
-        Node<Booking> current = bookingList.head;
-        while (current != null) {
-            Booking booking = current.getInfo();
-
-            if (booking.getScode().equals(scode) && booking.getState() == 1) {
-                System.out.println("Student with code " + scode + " has booked room with room code: " + booking.getRcode());
-                found = true;
-            }
-
-            current = current.getNext();
-        }
-
-        if (!found) {
-            System.out.println("Student with code " + scode + " has not booked any room.");
-        }
+        studentList.searchStudentRoom(scode, bookingList);
     }
 }

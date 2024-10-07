@@ -151,33 +151,20 @@ public class StudentList extends MyLinkedList<Student> {
 
     // 2.8
     public void searchStudentRoom(String scode, BookingList bookingList) {
-        // Search for the student by student code
-        Node<Student> studentNode = searchNodeByCode(scode);
+        // Search for the student by student code        
+        boolean found = false;
+        Node<Booking> current = bookingList.head;
+        while (current != null) {
+            Booking booking = current.getInfo();
 
-        if (studentNode != null) {
-
-            Node<Booking> currentBooking = bookingList.head;
-            boolean found = false;
-
-            while (currentBooking != null) {
-                Booking booking = currentBooking.getInfo();
-
-                if (booking.getScode().equals(scode) && booking.getState() == 1) {
-
-                    String bookedRoomCode = booking.getRcode();
-
-                    System.out.println("Student with code " + scode + " has booked room: ");
-                    System.out.println("Room code: " + bookedRoomCode);
-                    found = true;
-                    break;
-                }
-                currentBooking = currentBooking.getNext();
+            if (booking.getScode().equals(scode) && booking.getState() == 1) {
+                System.out.println("Student with code " + scode + " has booked room with room code: " + booking.getRcode());
+                found = true;
             }
-            if (!found) {
-                System.out.println("Student with code " + scode + " has not booked any room.");
-            }
-        } else {
-            System.out.println("Student with code " + scode + " not found.");
+            current = current.getNext();
+        }
+        if (!found) {
+            System.out.println("Student with code " + scode + " has not booked any room.");
         }
     }
 }
