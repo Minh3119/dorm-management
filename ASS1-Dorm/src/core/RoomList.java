@@ -172,26 +172,27 @@ public class RoomList extends MyLinkedList<Room> {
     }
 
     // 1.11
-        public Node<Room> searchByName(String name) {
-            Node<Room> current = head;
-            Node<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
+    public void searchByName(String name) {
+        Node<Room> current = head;
+        Node<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
 
-            while (current != null) {   //pressing nguyên sàn 
-                if (current.getInfo().getName().equals(name)) {
+        while (current != null) {   //pressing nguyên sàn 
+            if (current.getInfo().getName().equals(name)) {
+                if (firstMatch == null) {
+                    display(current.getInfo());
+                    firstMatch = current;
+                } else {
                     System.out.println(current.getInfo());
-                    if (firstMatch == null) {
-                        firstMatch = current;
-                    }
                 }
-                current = current.getNext();
             }
-
-            if (firstMatch == null) {
-                System.out.println("No rooms found with that name");
-            }
-
-            return firstMatch;
+            current = current.getNext();
         }
+
+        if (firstMatch == null) {
+            System.out.println("No rooms found with name: " + name);
+        }
+
+    }
 
 //    // 1.12
 //    public Room searchBookedRoomByCode(String rcode, BookingList bookingList) {

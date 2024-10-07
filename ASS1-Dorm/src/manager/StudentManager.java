@@ -92,22 +92,7 @@ public class StudentManager {
     public void searchStudentByName() {
         System.out.print("Enter student name: ");
         String name = Inputter.getString();
-
-        Node<Student> p = studentList.head;
-        boolean found = false;
-
-        while (p != null) {
-            if (p.getInfo().getName().equalsIgnoreCase(name)) {
-                System.out.println("Student found: ");
-                studentList.display(p.getInfo());
-                found = true;
-            }
-            p = p.getNext();
-        }
-
-        if (!found) {
-            System.out.println("No students with name " + name + " found.");
-        }
+        studentList.searchByName(name);
     }
 
     // 2.8
