@@ -15,6 +15,7 @@ import util.Inputter;
 import util.Node;
 import util.RoomType;
 import core.BookingList;
+import java.util.List;
 
 public class RoomList extends MyLinkedList<Room> {
 
@@ -61,11 +62,12 @@ public class RoomList extends MyLinkedList<Room> {
         System.out.println("-------------------------------------------------------------------------------------------------");
         traverse();
     }
+
     public void display(Room room) {
         // display all rooms in the list
 //        System.out.println("-------------------------------------------------------------------------------------------------");
         System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
-                "rcode", "name", "dom", "floor", "type", "beds","booked", "price");
+                "rcode", "name", "dom", "floor", "type", "beds", "booked", "price");
         System.out.println("-------------------------------------------------------------------------------------------------");
         System.out.println(room);
     }
@@ -182,14 +184,24 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.11
     public Node<Room> searchByName(String name) {
-        Node<Room> current = head;  
-        while (current != null) {
+        Node<Room> current = head;
+        Node<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
+
+        while (current != null) {   //pressing nguyên sàn 
             if (current.getInfo().getName().equals(name)) {
-                return current;  
+                System.out.println(current.getInfo());
+                if (firstMatch == null) {
+                    firstMatch = current;
+                }
             }
-            current = current.getNext();  
+            current = current.getNext();
         }
-        return null;  
+
+        if (firstMatch == null) {
+            System.out.println("No rooms found with that name");
+        }
+
+        return firstMatch;
     }
 
 //    // 1.12
@@ -217,5 +229,4 @@ public class RoomList extends MyLinkedList<Room> {
 //
 //        return null;  // Trả về null
 //    }
-
 }
