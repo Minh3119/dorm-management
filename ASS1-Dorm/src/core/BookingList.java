@@ -80,8 +80,6 @@ public class BookingList extends MyLinkedList<Booking> {
     // 3.4
     public void saveData(String filename) {
         // data = rcode, scode, bdate, ldate, state
-        loadData(filename);
-        
         if (this.isEmpty()) {
             System.out.println("No bookings found.");
             return;
