@@ -13,7 +13,7 @@ import util.Inputter;
 
 public class StudentManager {
 
-    static String filename = "src/resources/students.txt";
+    static String filename = "resources/students.txt";
 
     private final StudentList studentList;
 

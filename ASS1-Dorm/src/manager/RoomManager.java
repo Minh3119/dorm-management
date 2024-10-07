@@ -18,7 +18,7 @@ Main -> manager.BookingManager -> core.BookingList -> dto.Booking
  */
 public class RoomManager {
 
-    static String filename = "src/resources/rooms.txt";
+    static String filename = "resources/rooms.txt";
 
     private final RoomList roomList;
 
