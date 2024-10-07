@@ -43,7 +43,14 @@ public class RoomManager {
 
         // get rcode
         System.out.print("Room Code: ");
-        rcode = Inputter.getString();
+        while (true) {
+            rcode = Inputter.getString();
+            if (roomList.searchByCode(rcode) == null) {
+                break;
+            } else {
+                System.out.print("Room with code " + rcode + " already exists. Try again: ");
+            }
+        }
 
         // get rname
         System.out.print("Room Name: ");
@@ -125,7 +132,14 @@ public class RoomManager {
 
         // get rcode
         System.out.print("Room Code: ");
-        rcode = Inputter.getString();
+        while (true) {
+            rcode = Inputter.getString();
+            if (roomList.searchByCode(rcode) == null) {
+                break;
+            } else {
+                System.out.print("Room with code " + rcode + " already exists. Try again: ");
+            }
+        }
 
         // get rname
         System.out.print("Room Name: ");
@@ -160,7 +174,14 @@ public class RoomManager {
 
         // get rcode
         System.out.print("Room Code: ");
-        rcode = Inputter.getString();
+        while (true) {
+            rcode = Inputter.getString();
+            if (roomList.searchByCode(rcode) == null) {
+                break;
+            } else {
+                System.out.print("Room with code " + rcode + " already exists. Try again: ");
+            }
+        }
 
         // get rname
         System.out.print("Room Name: ");
