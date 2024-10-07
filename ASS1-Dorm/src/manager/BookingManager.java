@@ -141,11 +141,13 @@ public class BookingManager {
         Node<Booking> p = bookingList.head;
         boolean firstFind = true;
         while(p != null) {
-            if (p.getInfo().getRcode().equals(rcode)) {
+            Booking booking = p.getInfo();
+            if (booking.getRcode().equals(rcode) && booking.getState() == 1) {
                 if (firstFind) {
                     System.out.println("Found booked room with code: " + rcode);
                     Student student = studentList.searchByCode(p.getInfo().getScode());
                     studentList.display(student);
+                    firstFind = false;
                 } else {
                     Student student = studentList.searchByCode(p.getInfo().getScode());
                     System.out.println(student);

@@ -168,41 +168,30 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.10 
     public void deleteByIndex(int index) {
-        // delete a room by index
-        MyLinkedList<Room> room = new MyLinkedList<>();
-        int count = 0;
-        for (int i = 0; i < room.size(); i++) {
-            count++;
-            if (index == count) {
-                room.remove(index);
-            } else {
-                System.out.println("Data not found");
-            }
-        }
-        return;
+        this.remove(index);
     }
 
     // 1.11
-    public Node<Room> searchByName(String name) {
-        Node<Room> current = head;
-        Node<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
+        public Node<Room> searchByName(String name) {
+            Node<Room> current = head;
+            Node<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
 
-        while (current != null) {   //pressing nguyên sàn 
-            if (current.getInfo().getName().equals(name)) {
-                System.out.println(current.getInfo());
-                if (firstMatch == null) {
-                    firstMatch = current;
+            while (current != null) {   //pressing nguyên sàn 
+                if (current.getInfo().getName().equals(name)) {
+                    System.out.println(current.getInfo());
+                    if (firstMatch == null) {
+                        firstMatch = current;
+                    }
                 }
+                current = current.getNext();
             }
-            current = current.getNext();
-        }
 
-        if (firstMatch == null) {
-            System.out.println("No rooms found with that name");
-        }
+            if (firstMatch == null) {
+                System.out.println("No rooms found with that name");
+            }
 
-        return firstMatch;
-    }
+            return firstMatch;
+        }
 
 //    // 1.12
 //    public Room searchBookedRoomByCode(String rcode, BookingList bookingList) {
@@ -229,4 +218,5 @@ public class RoomList extends MyLinkedList<Room> {
 //
 //        return null;  // Trả về null
 //    }
+
 }
