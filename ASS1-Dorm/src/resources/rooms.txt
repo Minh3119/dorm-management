@@ -1,1 +1,3 @@
-
+aaa,asd,asd,asd,DOUBLE,3,1000.0
+hhh,hhh,hhh,3,TRIPLE,6,1000.0
+bbb,asd,asd,asd,DOUBLE,2,999.0

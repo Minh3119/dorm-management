@@ -5,17 +5,20 @@
 
 package dto;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Booking {
     
+    static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    
     private String rcode;
     private String scode;
-    private LocalDate bookDate;
-    private LocalDate leaveDate;
+    private Date bookDate;
+    private Date leaveDate;
     private int state;      // 0 or 1 only
 
-    public Booking(String rcode, String scode, LocalDate bookDate, LocalDate leaveDate, int state) {
+    public Booking(String rcode, String scode, Date bookDate, Date leaveDate, int state) {
         this.rcode = rcode;
         this.scode = scode;
         this.bookDate = bookDate;
@@ -31,11 +34,11 @@ public class Booking {
         return scode;
     }
 
-    public LocalDate getBookDate() {
+    public Date getBookDate() {
         return bookDate;
     }
 
-    public LocalDate getLeaveDate() {
+    public Date getLeaveDate() {
         return leaveDate;
     }
 
@@ -43,11 +46,11 @@ public class Booking {
         return state;
     }
 
-    public void setBookDate(LocalDate bookDate) {
+    public void setBookDate(Date bookDate) {
         this.bookDate = bookDate;
     }
 
-    public void setLeaveDate(LocalDate leaveDate) {
+    public void setLeaveDate(Date leaveDate) {
         this.leaveDate = leaveDate;
     }
 
@@ -55,5 +58,13 @@ public class Booking {
         this.state = state;
     }
     
+    @Override
+    public String toString() {
+        return String.format("%-10s | %-10s | %-10s | %-10s | %s",
+                rcode, scode, 
+                bookDate==null ? "null" : formatter.format(bookDate),
+                leaveDate==null ? "null" : formatter.format(leaveDate),
+                state);
+    }
     
 }

@@ -19,4 +19,14 @@ public enum RoomType {
         return beds;
     }
     
+    @Override
+    public String toString() {
+        if (this == DOUBLE) {
+            return "DOUBLE";
+        } else if (this == TRIPLE) {
+            return "TRIPLE";
+        }
+        return null;
+    }
+    
 }
