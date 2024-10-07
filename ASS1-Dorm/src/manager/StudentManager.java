@@ -44,7 +44,7 @@ public class StudentManager {
         String name = Inputter.getString();
 
         System.out.print("Enter birth year: ");
-        int byear = Inputter.getInt(1800, 2024);
+        int byear = Inputter.getInt(0, 2006);
 
         Student student = new Student(scode, name, byear);
         studentList.addToEnd(student);

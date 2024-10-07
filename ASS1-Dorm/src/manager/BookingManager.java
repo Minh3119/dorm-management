@@ -155,6 +155,10 @@ public class BookingManager {
             }
             p = p.getNext();
         }
+        
+        if (firstFind == true) {
+            System.out.println("The room is not booked.");
+        }
     }
     
 }
