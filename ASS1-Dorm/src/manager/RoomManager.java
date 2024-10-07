@@ -162,6 +162,7 @@ public class RoomManager {
 
         Room room = new Room(rcode, rname, dom, floor, roomType, 0, price);
         roomList.addToBeginning(room);
+        System.out.format("Created new room.\n");
     }
 
     // 1.9
