@@ -15,6 +15,7 @@ import util.Inputter;
 import util.Node;
 import util.RoomType;
 import core.BookingList;
+import java.util.List;
 
 public class RoomList extends MyLinkedList<Room> {
 
@@ -61,11 +62,12 @@ public class RoomList extends MyLinkedList<Room> {
         System.out.println("-------------------------------------------------------------------------------------------------");
         traverse();
     }
+
     public void display(Room room) {
         // display all rooms in the list
 //        System.out.println("-------------------------------------------------------------------------------------------------");
         System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
-                "rcode", "name", "dom", "floor", "type", "beds","booked", "price");
+                "rcode", "name", "dom", "floor", "type", "beds", "booked", "price");
         System.out.println("-------------------------------------------------------------------------------------------------");
         System.out.println(room);
     }
@@ -170,15 +172,51 @@ public class RoomList extends MyLinkedList<Room> {
     }
 
     // 1.11
-    public Node<Room> searchByName(String name) {
-        Node<Room> current = head;  
-        while (current != null) {
-            if (current.getInfo().getName().equals(name)) {
-                return current;  
+        public Node<Room> searchByName(String name) {
+            Node<Room> current = head;
+            Node<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
+
+            while (current != null) {   //pressing nguyên sàn 
+                if (current.getInfo().getName().equals(name)) {
+                    System.out.println(current.getInfo());
+                    if (firstMatch == null) {
+                        firstMatch = current;
+                    }
+                }
+                current = current.getNext();
             }
-            current = current.getNext();  
+
+            if (firstMatch == null) {
+                System.out.println("No rooms found with that name");
+            }
+
+            return firstMatch;
         }
-        return null;
-    }
+
+//    // 1.12
+//    public Room searchBookedRoomByCode(String rcode, BookingList bookingList) {
+//        
+//        Node<Booking> p = bookingList.head;
+//        while(p != null) {
+//            if (p.getInfo().getRCode)
+//            p = p.getNext();
+//        }
+//        
+//        // Tìm kiếm phòng phương thức searchNodeByCode
+//        Node<Room> roomNode = searchNodeByCode(rcode);
+//
+//        if (roomNode != null) {
+//            Room room = roomNode.getInfo();
+//            if (room.getBooked() == 0) {
+//                return room;
+//            } else {
+//                System.out.println("Room is fully booked");
+//            }
+//        } else {
+//            System.out.println("Room with code " + rcode + " not found.");
+//        }
+//
+//        return null;  // Trả về null
+//    }
 
 }
