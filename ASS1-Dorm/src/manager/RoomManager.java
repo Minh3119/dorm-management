@@ -182,14 +182,14 @@ public class RoomManager {
 
         Room room = new Room(rcode, rname, dom, floor, roomType, 0, price);
         System.out.print("Input room index number: ");
-        int index = Inputter.getInt(0, roomList.size());
+        int index = Inputter.getInt(0, roomList.size()-1);
         roomList.addBeforeIndex(index, room);
     }
 
     // 1.10
     public void deleteRoomByIndex() {
         System.out.print("Input room index number: ");
-        int index = Inputter.getInt(0, roomList.size());
+        int index = Inputter.getInt(0, roomList.size()-1);
         roomList.deleteByIndex(index);
         System.out.println("Deleted.");
     }
