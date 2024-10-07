@@ -135,8 +135,12 @@ public class StudentList extends MyLinkedList<Student> {
         boolean found = false;
         while (p != null) {
             if (p.getInfo().getName().equalsIgnoreCase(sname)) {
-                System.out.println(p.getInfo());
-                found = true;
+                if (found == false) {
+                    display(p.getInfo());
+                    found = true;
+                } else {
+                    System.out.println(p.getInfo());
+                }
             }
             p = p.getNext();
         }

@@ -77,15 +77,7 @@ public class StudentManager {
     public void deleteStudentByCode() {
         System.out.print("Enter student code to delete: ");
         String scode = Inputter.getString();
-
-        Student student = studentList.searchByCode(scode);
-
-        if (student != null) {
-            System.out.println("Student found:");
-            studentList.display(student);
-        } else {
-            System.out.println("Student with code " + scode + " not found.");
-        }
+        studentList.deleteByCode(scode);
     }
 
     // 2.7
