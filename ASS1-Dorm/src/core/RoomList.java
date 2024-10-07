@@ -166,18 +166,7 @@ public class RoomList extends MyLinkedList<Room> {
 
     // 1.10 
     public void deleteByIndex(int index) {
-        // delete a room by index
-        MyLinkedList<Room> room = new MyLinkedList<>();
-        int count = 0;
-        for (int i = 0; i < room.size(); i++) {
-            count++;
-            if (index == count) {
-                room.remove(index);
-            } else {
-                System.out.println("Data not found");
-            }
-        }
-        return;
+        this.remove(index);
     }
 
     // 1.11
@@ -189,33 +178,7 @@ public class RoomList extends MyLinkedList<Room> {
             }
             current = current.getNext();  
         }
-        return null;  
+        return null;
     }
-
-//    // 1.12
-//    public Room searchBookedRoomByCode(String rcode, BookingList bookingList) {
-//        
-//        Node<Booking> p = bookingList.head;
-//        while(p != null) {
-//            if (p.getInfo().getRCode)
-//            p = p.getNext();
-//        }
-//        
-//        // Tìm kiếm phòng phương thức searchNodeByCode
-//        Node<Room> roomNode = searchNodeByCode(rcode);
-//
-//        if (roomNode != null) {
-//            Room room = roomNode.getInfo();
-//            if (room.getBooked() == 0) {
-//                return room;
-//            } else {
-//                System.out.println("Room is fully booked");
-//            }
-//        } else {
-//            System.out.println("Room with code " + rcode + " not found.");
-//        }
-//
-//        return null;  // Trả về null
-//    }
 
 }

@@ -172,7 +172,7 @@ public class BookingList extends MyLinkedList<Booking> {
         // else false
         Node<Booking> p = head;
         while (p != null) {
-            if (p.getInfo().getScode().equals(scode)) {
+            if (p.getInfo().getScode().equals(scode) && p.getInfo().getState() == 1) {
                 return true;
             }
             p = p.getNext();

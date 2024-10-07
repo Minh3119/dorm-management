@@ -7,7 +7,6 @@ package manager;
 import core.RoomList;
 import dto.Room;
 import util.Inputter;
-import util.MyLinkedList;
 import util.Node;
 import util.RoomType;
 
@@ -123,19 +122,16 @@ public class RoomManager {
 
     // 1.9
     public void createNewRoomBeforeIndex() {
-        MyLinkedList<Room> rooms = new MyLinkedList<>();
         Room room = new Room();
         System.out.print("Input room index number: ");
-        int index = Inputter.getInt(0, rooms.size());
+        int index = Inputter.getInt(0, roomList.size());
         roomList.addBeforeIndex(index, room);
-        //roomList.addBeforeIndex(index, room);
     }
 
     // 1.10
     public void deleteRoomByIndex() {
-        MyLinkedList<Room> rooms = new MyLinkedList<>();
         System.out.print("Input room index number: ");
-        int index = Inputter.getInt(0, rooms.size());
+        int index = Inputter.getInt(0, roomList.size());
         roomList.deleteByIndex(index);
         System.out.println("Deleted.");
     }
@@ -152,12 +148,5 @@ public class RoomManager {
             System.out.println("Data not found");
         }
     }
-
-//    // 1.12
-//    public void searchBookedRoomByCode() {
-//        System.out.print("Input room code: ");
-//        String input = Inputter.getString();
-//        roomList.searchBookedRoomByCode(input);
-//    }
 
 }
