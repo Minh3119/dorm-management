@@ -7,7 +7,7 @@ package util;
 
 import java.util.Scanner;
 import util.Menu;
-import util.RoomType;
+import dto.RoomType;
 
 public class Inputter {
     

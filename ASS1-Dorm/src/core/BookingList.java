@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import util.MyLinkedList;
-import util.Node;
+import base.MyLinkedList;
+import base.Node;
 
 public class BookingList extends MyLinkedList<Booking> {
     

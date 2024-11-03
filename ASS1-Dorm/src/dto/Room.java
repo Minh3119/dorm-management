@@ -4,8 +4,6 @@
  */
 package dto;
 
-import util.RoomType;
-
 public class Room {
     
     // room id
@@ -101,5 +99,15 @@ public class Room {
         return String.format("%-10s | %-20s | %-5s | %-5s | %-7s | %-4s | %-6s | %s",
                 rcode, name, dom, floor, roomType.toString(), getBeds(), booked, price);
     }
+    
+    public int compareRcode(Room r2) {
+        // so sanh rcode
+        return rcode.compareTo(r2.getRcode());
+    }
+    
+//    public int compareName(Room r2) {
+//        // so sanh room name
+//        return name.compareTo(r2.getName());
+//    }
     
 }

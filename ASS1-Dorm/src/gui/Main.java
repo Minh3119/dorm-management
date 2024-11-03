@@ -5,12 +5,8 @@
 package gui;
 
 import core.BookingList;
-import core.RoomList;
-import core.StudentList;
+import core.RoomTree;
 import java.util.Arrays;
-import manager.BookingManager;
-import manager.RoomManager;
-import manager.StudentManager;
 import util.Inputter;
 import util.Menu;
 
@@ -63,12 +59,9 @@ public class Main {
     
     
     private final static BookingList bookingList = new BookingList();
-    private final static StudentList studentList = new StudentList();
-    private final static RoomList roomList = new RoomList();
-    
-    private final static RoomManager roomManager = new RoomManager(roomList);
-    private final static StudentManager studentManager = new StudentManager(studentList);
-    private final static BookingManager bookingManager = new BookingManager(bookingList, roomList, studentList);
+//    private final static StudentList studentList = new StudentList();
+    private final static RoomTree roomTree = new RoomTree();
+
     
     public static void main(String[] args) {
         displayMainMenu();

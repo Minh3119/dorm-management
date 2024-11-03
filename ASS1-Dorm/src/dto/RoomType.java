@@ -2,7 +2,7 @@
  *
  * @author Group 4
  */
-package util;
+package dto;
 
 public enum RoomType {
     
