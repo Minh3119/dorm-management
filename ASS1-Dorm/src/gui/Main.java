@@ -6,6 +6,8 @@ package gui;
 
 import core.BookingList;
 import core.RoomTree;
+import dto.Room;
+import dto.RoomType;
 import java.util.Arrays;
 import util.Inputter;
 import util.Menu;
@@ -108,40 +110,78 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    roomManager.loadData();
+                    roomTree.loadData();
                     break;
                 case 2:
-                    roomManager.createNewRoomAtEnd();
+                    // ask for room information here, then .insert()
+                    System.out.println("Please insert infomation for the new room:");
+
+                    String rcode, rname, dom, floor;
+                    RoomType roomType;
+                    double price;
+
+                    // get rcode
+                    System.out.print("Room Code: ");
+                    while (true) {
+                        rcode = Inputter.getString();
+                        if (roomTree.searchByCode(rcode) == null) {
+                            break;
+                        } else {
+                            System.out.print("Room with code " + rcode + " already exists. Try again: ");
+                        }
+                    }
+
+                    // get rname
+                    System.out.print("Room Name: ");
+                    rname = Inputter.getString();
+
+                    // get dom
+                    System.out.print("Room's dorm name: ");
+                    dom = Inputter.getString();
+
+                    // get floor
+                    System.out.print("Room's at which floor: ");
+                    floor = Inputter.getString();
+
+                    // get room type DOUBLE or TRIPLE, Inputter can handle this
+                    roomType = Inputter.getRoomType();
+
+                    // get room's price
+                    System.out.println("Room's price: ");
+                    price = Inputter.getPrice();
+
+                    Room newRoom = new Room(rcode, rname, dom, floor, roomType, 0, price);
+                    roomTree.insert(newRoom);
                     break;
                 case 3:
-                    roomManager.display();
+                    roomTree.display();
                     break;
                 case 4:
-                    roomManager.saveData();
+                    roomTree.saveData();
                     break;
                 case 5:
-                    roomManager.searchRoomByCode();
+                    roomTree.searchRoomByCode();
                     break;
                 case 6:
-                    roomManager.deleteRoomByCode();
+                    roomTree.deleteByCopying();
                     break;
                 case 7:
-                    roomManager.sort();
+                    roomTree.deleteByMerging();
                     break;
                 case 8:
-                    roomManager.createNewRoomAtBeginning();
+                    roomTree.balance();
                     break;
                 case 9:
-                    roomManager.createNewRoomBeforeIndex();
+                    roomTree.breadth();
                     break;
                 case 10:
-                    roomManager.deleteRoomByIndex();
+                    roomTree.count();
                     break;
                 case 11:
-                    roomManager.searchRoomByName();
+                    roomTree.searchByName();
                     break;
                 case 12:
-                    bookingManager.searchBookedRoomByCode();
+                    roomTree.;
                     break;
             }
         }

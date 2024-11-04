@@ -14,6 +14,9 @@ import util.Inputter;
 
 
 public class RoomTree {
+    
+    private static String FILE_NAME = "resources/rooms.txt";
+    
     TreeNode root;
 
     public RoomTree() {
@@ -491,10 +494,10 @@ public class RoomTree {
     
     
     // 1.1
-    public int loadData(String filename) {
+    public int loadData() {
         // data = rcode, name, dom, floor, type, booked, price
         int count = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -517,9 +520,7 @@ public class RoomTree {
     }
 
     // 1.2
-    public void addToEnd(Room room) {
-        insert(room);
-    }
+    // insert(room)
 
     // 1.3
     public void display() {
@@ -532,8 +533,7 @@ public class RoomTree {
     }
 
     public void display(Room room) {
-        // display all rooms in the list
-//        System.out.println("-------------------------------------------------------------------------------------------------");
+        // display 1 Room
         System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
                 "rcode", "name", "dom", "floor", "type", "beds", "booked", "price");
         System.out.println("-------------------------------------------------------------------------------------------------");
@@ -541,21 +541,21 @@ public class RoomTree {
     }
 
     // 1.4
-    public void saveData(String filename) {
+    public void saveData() {
         // data = rcode, name, dom, floor, type, booked, price
-        loadData(filename);
+        loadData();
 
         if (this.isEmpty()) {
             System.out.println("No rooms found.");
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, false))) {
             saveDataPostOrder(this.root, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.format("Saved rooms to %s \n", filename);
+        System.out.format("Saved rooms to %s \n", FILE_NAME);
     }
     
     public void saveDataPostOrder(TreeNode<Room> p, BufferedWriter writer) throws IOException {
@@ -631,9 +631,7 @@ public class RoomTree {
     // just use breadth()
 
     // 1.10 
-    public void deleteByIndex(int index) {
-        this.remove(index);
-    }
+    // use count() bro
 
     // 1.11
     public Room searchByName(String rname) {
