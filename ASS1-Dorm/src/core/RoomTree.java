@@ -4,12 +4,14 @@ import base.MyQueue;
 import base.TreeNode;
 import dto.Room;
 import dto.RoomType;
+import dto.Student;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import util.Inputter;
 
 
@@ -650,4 +652,36 @@ public class RoomTree {
     
     
     // 1.12
+    public void searchBookedByRcode(String rcode) {
+        // Tìm sinh viên trùng
+        ArrayList<Student> studentsInRoom = new ArrayList<>();
+        searchStudentsInRoom(root, rcode, studentsInRoom);
+
+        if (studentsInRoom.isEmpty()) {
+            System.out.println("No students live in room " + rcode + ".");
+        } else {
+            System.out.println("Students list living in room " + rcode + ":");
+            for (Student student : studentsInRoom) {
+                System.out.println(student);
+            }
+        }
+    }
+
+    // Pressing Toàn Bản đồ 
+    private void searchStudentsInRoom(TreeNode<Student> node, String rcode, ArrayList<Student> result) {
+        if (node == null) {
+            return;
+        }
+
+        Room bookedRoom = node.info.getBookedRoom();
+        if (bookedRoom != null && rcode.equals(bookedRoom.getRcode())) {
+            result.add(node.info);
+        }
+
+        searchStudentsInRoom(node.left, rcode, result);
+        searchStudentsInRoom(node.right, rcode, result);
+    }
+
+
+
 }
