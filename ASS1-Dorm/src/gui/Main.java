@@ -207,7 +207,7 @@ public class Main {
 
                     if (room != null) {
                         System.out.println("Room found: ");
-                        System.out.println(room);
+                        roomTree.display(room);
                     } else {
                         System.out.println("Room with name " + rname + " not found.");
                     }
