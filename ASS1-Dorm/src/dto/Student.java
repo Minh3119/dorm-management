@@ -20,7 +20,7 @@ public class Student {
         this.byear = byear;
         this.bookedRoom=null;
     }
-public Room getBookedRoom() {
+    public Room getBookedRoom() {
         return bookedRoom;
     }
     public String getScode() {
