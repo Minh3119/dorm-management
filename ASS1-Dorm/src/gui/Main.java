@@ -212,7 +212,7 @@ public class Main {
                     }
                     break;
                 case 12:
-                    roomTree.;
+                    //roomTree.;
                     break;
             }
         }
