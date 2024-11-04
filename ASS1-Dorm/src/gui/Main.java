@@ -264,7 +264,7 @@ public class Main {
 
                     // get booked Room
                     //....
-                    Student newStudent = new Student(sname, rname, bYear);
+                    Student newStudent = new Student(scode, sname, bYear);
                     studentTree.addToEnd(newStudent);
                     break;
                 case 3: //Display data by pre-order traversal
