@@ -54,14 +54,13 @@ public class BookingList extends MyLinkedList<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Loaded" + count + " bookings.");
+        System.out.println("Loaded " + count + " bookings.");
     }
     
     public void bookRoom(Booking booking) {
         // add booking to the beginning
         this.addFirst(booking);
         System.out.println("Room booked successfully: ");
-        display(booking);
     }
     
     // 3.3

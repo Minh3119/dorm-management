@@ -316,6 +316,10 @@ public class Main {
             int choice;
             choice = Inputter.getInt(0, BOOKING_OPTIONS.length);
             System.out.println("");
+            
+            String rcode = null;
+            String scode = null;
+            
             switch (choice) {
                 case 0:
                     return;
@@ -325,8 +329,7 @@ public class Main {
                 case 2:
                     System.out.println("Please insert infomation for the new booking:");
 
-                    String rcode = null;
-                    String scode = null;
+                    
                     Date bdate = new Date();
 
                     Room room = null;
@@ -383,6 +386,7 @@ public class Main {
 
                     room.increaseBooked();      // increase booked beds by 1
                     Booking booking = new Booking(rcode, scode, bdate, null, 1);
+                    bookingList.bookRoom(booking);
                 case 3:
                     bookingList.display();
                     break;
@@ -394,13 +398,52 @@ public class Main {
                     break;
                 case 6:
                     // get rcode
+                    // get rcode
                     System.out.print("Room Code: ");
-                    rcode = Inputter.getString();
-                    //.....
+                    while (true) {
+                        rcode = Inputter.getString();
+                        if (rcode.equals("0")) {
+                            System.out.println("Aborted.");
+                            return;
+                        }
+                        room = roomTree.searchByCode(rcode);
+                        if (room == null) {
+                            System.out.print("Room not found, try another room: ");
+                            continue;
+                        }
 
-                    // get sname
-                    scode = Inputter.getName("Student Code ");
-                    
+                        // check if booked beds == 0
+                        if (room.getBooked() == 0) {
+                            System.out.print("Room is not booked (0 beds booked), try another room: ");
+                            continue;
+                        }
+
+                        break;
+                    }
+
+
+                    // get rname
+                    System.out.print("Student Code: ");
+                    while (true) {
+                        scode = Inputter.getString();
+                        if (scode.equals("0")) {
+                            System.out.println("Aborted.");
+                            return;
+                        }
+                        student = studentTree.searchByCode(scode);
+                        if (student == null) {
+                            System.out.print("Student not found, try again: ");
+                            continue;
+                        }
+
+                        // if student is not booked
+                        if (bookingList.isStudentBooked(scode) == false) {
+                            System.out.print("This student doesn't belong to any room, try another student: ");
+                            continue;
+                        }
+
+                        break;
+                    }
                     
                     bookingList.leaveRoom(rcode, scode, roomTree);
                     break;
