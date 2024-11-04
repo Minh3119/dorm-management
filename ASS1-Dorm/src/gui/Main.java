@@ -212,7 +212,9 @@ public class Main {
                     }
                     break;
                 case 12:
-                    roomTree.;
+                    System.out.print("Input room code: ");
+                    rcode = Inputter.getString();
+                    roomTree.searchBookedByRcode(rcode);
                     break;
             }
         }
