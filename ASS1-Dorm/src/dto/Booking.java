@@ -47,7 +47,7 @@ public class Booking {
     public int getState() {
         return state;
     }
-
+    
     public void setBookDate(Date bookDate) {
         this.bookDate = bookDate;
     }

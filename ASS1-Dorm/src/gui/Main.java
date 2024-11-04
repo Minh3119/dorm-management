@@ -11,7 +11,9 @@ import dto.Booking;
 import dto.Room;
 import dto.Student;
 import dto.RoomType;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import util.Inputter;
 import util.Menu;
 
@@ -61,7 +63,7 @@ public class Main {
         "6. Leave a room by rcode + scode",
         "0. Go back"
     };
-
+    
     private final static BookingList bookingList = new BookingList();
     private final static StudentTree studentTree = new StudentTree();
     private final static RoomTree roomTree = new RoomTree();
@@ -318,39 +320,76 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    bookingList.loadData("resources/bookings.txt");
+                    bookingList.loadData();
                     break;
                 case 2:
-                    Room room = new Room();
-                    Student student = new Student();
-                    Booking booking = new Booking();
-                    System.out.println("Please insert infomation for the new booking: ");
+                    System.out.println("Please insert infomation for the new booking:");
+
+                    String rcode = null;
+                    String scode = null;
+                    Date bdate = new Date();
+
+                    Room room = null;
+                    Student student = null;
 
                     // get rcode
                     System.out.print("Room Code: ");
-                    String rcode = Inputter.getString();
-                    //.....
-                    System.out.print("Student Code: ");
-                    String scode = Inputter.getString();
-                    if((room.getRcode().toLowerCase().equalsIgnoreCase(rcode))&&(
-                    student.getScode().toLowerCase().equalsIgnoreCase(scode))){
-                        if(room.getBeds()>0&&student.getBookedRoom()==null){
-                            booking.setState(1);
-                            booking.setBookDate("04/11/2024"); // can chinh sua thanh ngay hom nay
-                            booking.setLeaveDate(null);
-                            bookingList.addFirst(booking);
-                            roomTree.count()+=1;
+                    while (true) {
+                        rcode = Inputter.getString();
+                        if (rcode.equals("0")) {
+                            System.out.println("Aborted.");
+                            return;
                         }
+                        room = roomTree.searchByCode(rcode);
+                        if (room == null) {
+                            System.out.print("Room not found, try another room: ");
+                            continue;
+                        }
+
+                        // check if available beds > 0
+                        // available beds = total beds - booked
+                        int availableBeds = room.getBeds() - room.getBooked();
+                        if (availableBeds == 0) {
+                            System.out.print("Room is fully booked (0 beds left), try another room: ");
+                            continue;
+                        }
+
+                        break;
                     }
 
-                    //....
+
+                    // get rname
+                    System.out.print("Student Code: ");
+                    while (true) {
+                        scode = Inputter.getString();
+                        if (scode.equals("0")) {
+                            System.out.println("Aborted.");
+                            return;
+                        }
+                        student = studentTree.searchByCode(scode);
+                        if (student == null) {
+                            System.out.print("Student not found, try again: ");
+                            continue;
+                        }
+
+                        // if student is not living in any room -> valid
+                        if (bookingList.isStudentBooked(scode) == true) {
+                            System.out.print("This student already booked a room, try another student: ");
+                            continue;
+                        }
+
+                        break;
+                    }
+
+                    room.increaseBooked();      // increase booked beds by 1
+                    Booking booking = new Booking(rcode, scode, bdate, null, 1);
                 case 3:
                     bookingList.display();
                     break;
                 case 4:
-                    bookingList.saveData("booking.txt");
+                    bookingList.saveData();
                     break;
-                case 5: // HÀM SAI
+                case 5:
                     bookingList.sortByRcodeAndScodeDESC();
                     break;
                 case 6:

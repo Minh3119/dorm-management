@@ -20,16 +20,18 @@ import util.Inputter;
 
 public class BookingList extends MyLinkedList<Booking> {
     
+    private static final String FILE_NAME = "resources/bookings.txt";
+    
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
     public BookingList() {
     }
     
     // 3.1
-    public int loadData(String filename) {
+    public void loadData() {
         // data = rcode, scode, bdate, ldate, state
         int count = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -52,7 +54,7 @@ public class BookingList extends MyLinkedList<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return count;
+        System.out.println("Loaded" + count + " bookings.");
     }
     
     public void bookRoom(Booking booking) {
@@ -79,14 +81,14 @@ public class BookingList extends MyLinkedList<Booking> {
     }
     
     // 3.4
-    public void saveData(String filename) {
+    public void saveData() {
         // data = rcode, scode, bdate, ldate, state
         if (this.isEmpty()) {
             System.out.println("No bookings found.");
             return;
         }
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, false))) {
             Node<Booking> p = head;
             String[] lineComponents = new String[5];
             while (p != null) {
@@ -105,34 +107,34 @@ public class BookingList extends MyLinkedList<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.format("Saved bookings to %s \n", filename);
+        System.out.format("Saved bookings to %s \n", FILE_NAME);
     }
     
     // 3.5
-public void sortByRcodeAndScodeDESC() {
-    // Sắp xếp theo rcode giảm dần, sau đó theo scode giảm dần
-    Node<Booking> p = head;
-    Node<Booking> q;
+    public void sortByRcodeAndScodeDESC() {
+        // Sắp xếp theo rcode giảm dần, sau đó theo scode giảm dần
+        Node<Booking> p = head;
+        Node<Booking> q;
 
-    while (p != null) {
-        q = p.getNext();
-        while (q != null) {
-            // So sánh theo rcode trước
-            if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) < 0) {
-                swap(p, q);
-            } 
-            // Nếu rcode bằng nhau, so sánh theo scode
-            else if (p.getInfo().getRcode().equals(q.getInfo().getRcode())) {
-                if (p.getInfo().getScode().compareTo(q.getInfo().getScode()) < 0) {
+        while (p != null) {
+            q = p.getNext();
+            while (q != null) {
+                // So sánh theo rcode trước
+                if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) < 0) {
                     swap(p, q);
+                } 
+                // Nếu rcode bằng nhau, so sánh theo scode
+                else if (p.getInfo().getRcode().equals(q.getInfo().getRcode())) {
+                    if (p.getInfo().getScode().compareTo(q.getInfo().getScode()) < 0) {
+                        swap(p, q);
+                    }
                 }
+                q = q.getNext();
             }
-            q = q.getNext();
+            p = p.getNext();
         }
-        p = p.getNext();
+        System.out.println("Bookings sorted by rcode and scode in descending order.");
     }
-    System.out.println("Bookings sorted by rcode and scode in descending order.");
-}
 
     
     public void sortStudentCodeDESC() {
