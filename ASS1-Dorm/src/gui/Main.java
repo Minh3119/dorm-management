@@ -106,6 +106,11 @@ public class Main {
             int choice;
             choice = Inputter.getInt(0,ROOM_OPTIONS.length);
             System.out.println("");
+            String rcode, rname, dom, floor;
+            RoomType roomType;
+            double price;
+            Room room;
+
             switch (choice) {
                 case 0:
                     return;
@@ -115,10 +120,6 @@ public class Main {
                 case 2:
                     // ask for room information here, then .insert()
                     System.out.println("Please insert infomation for the new room:");
-
-                    String rcode, rname, dom, floor;
-                    RoomType roomType;
-                    double price;
 
                     // get rcode
                     System.out.print("Room Code: ");
@@ -154,31 +155,61 @@ public class Main {
                     roomTree.insert(newRoom);
                     break;
                 case 3:
-                    roomTree.display();
+                    if (roomTree.isEmpty()) {
+                        System.out.println("No rooms found.");
+                    } else {
+                        System.out.println("Rooms:");
+                        roomTree.display();
+                    }
                     break;
                 case 4:
                     roomTree.saveData();
                     break;
                 case 5:
-                    roomTree.searchRoomByCode();
+                    System.out.print("Input room code: ");
+                    rcode = Inputter.getString();
+                    room = roomTree.searchByCode(rcode);
+
+                    if (room != null) {
+                        System.out.println("Room found: ");
+                        roomTree.display(room);
+                    } else {
+                        System.out.println("Room with code " + rcode + " not found.");
+                    }
+                    
                     break;
                 case 6:
-                    roomTree.deleteByCopying();
+                    System.out.print("Input room code: ");
+                    rcode = Inputter.getString();
+                    roomTree.deleteByCopying(roomTree.searchByCode(rcode));
                     break;
                 case 7:
-                    roomTree.deleteByMerging();
+                    System.out.print("Input room code: ");
+                    rcode = Inputter.getString();
+                    roomTree.deleteByMerging(roomTree.searchByCode(rcode));
                     break;
                 case 8:
                     roomTree.balance();
+                    System.out.println("Tree is now balanced.");
                     break;
                 case 9:
                     roomTree.breadth();
                     break;
                 case 10:
-                    roomTree.count();
+                    int count = roomTree.count();
+                    System.out.println("Found " + count + " rooms.");
                     break;
                 case 11:
-                    roomTree.searchByName();
+                    System.out.print("Input room code: ");
+                    rname = Inputter.getString();
+                    room = roomTree.searchByName(rname);
+
+                    if (room != null) {
+                        System.out.println("Room found: ");
+                        roomTree.display(room);
+                    } else {
+                        System.out.println("Room with name " + rname + " not found.");
+                    }
                     break;
                 case 12:
                     roomTree.;

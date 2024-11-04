@@ -110,7 +110,11 @@ public class RoomTree {
         }
         MyQueue q = new MyQueue();
         q.enqueue(root);
-        TreeNode p;
+        TreeNode<Room> p;
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-5s | %-5s | %-7s | %4s | %-6s | %s\n",
+                "rcode", "name", "dom", "floor", "type", "beds", "booked", "price");
+        System.out.println("-------------------------------------------------------------------------------------------------");
         while (!q.isEmpty()) {
             p = (TreeNode) q.dequeue();
             if (p.left != null) {
@@ -119,7 +123,7 @@ public class RoomTree {
             if (p.right != null) {
                 q.enqueue(p.right);
             }
-            visit(p);
+            display(p.info);
         }
     }
 
