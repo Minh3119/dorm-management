@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import base.MyLinkedList;
 import base.Node;
+import util.Inputter;
 
 public class BookingList extends MyLinkedList<Booking> {
     
@@ -105,7 +106,7 @@ public class BookingList extends MyLinkedList<Booking> {
             e.printStackTrace();
         }
         System.out.format("Saved bookings to %s \n", filename);
-    }    
+    }
     
     // 3.5
     public void sortRoomCodeDESC() {

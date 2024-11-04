@@ -2,21 +2,23 @@
  *
  * @author Group 4
  */
-
 package dto;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Booking {
-    
+
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     private String rcode;
     private String scode;
     private Date bookDate;
     private Date leaveDate;
     private int state;      // 0 or 1 only
+
+    public Booking() {
+    }
 
     public Booking(String rcode, String scode, Date bookDate, Date leaveDate, int state) {
         this.rcode = rcode;
@@ -57,14 +59,14 @@ public class Booking {
     public void setState(int state) {
         this.state = state;
     }
-    
+
     @Override
     public String toString() {
         return String.format("%-10s | %-10s | %-10s | %-10s | %s",
-                rcode, scode, 
-                bookDate==null ? "null" : formatter.format(bookDate),
-                leaveDate==null ? "null" : formatter.format(leaveDate),
+                rcode, scode,
+                bookDate == null ? "null" : formatter.format(bookDate),
+                leaveDate == null ? "null" : formatter.format(leaveDate),
                 state);
     }
-    
+
 }

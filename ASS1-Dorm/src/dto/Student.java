@@ -10,6 +10,10 @@ public class Student {
     private String name;
     private int byear;      // student's birth year, used to check age >= 18
     public Room bookedRoom;
+
+    public Student() {
+    }
+    
     public Student(String scode, String name, int byear) {
         this.scode = scode;
         this.name = name;
