@@ -473,6 +473,30 @@ public class RoomTree {
         }
     }
     
+    public Room binarySearch(String rcode) {
+        return binarySearch(root, rcode);
+    }
+
+    private Room binarySearch(TreeNode<Room> node, String rcode) {
+        if (node == null) {
+            return null; // Base case: not found
+        }
+
+        // Compare the rcode of the current node's Room with the search rcode
+        int comparison = rcode.compareTo(node.info.getRcode());
+
+        if (comparison < 0) {
+            // Search in the left subtree
+            return binarySearch(node.left, rcode);
+        } else if (comparison > 0) {
+            // Search in the right subtree
+            return binarySearch(node.right, rcode);
+        } else {
+            // Found the Room
+            return node.info;
+        }
+    }
+    
     // 1.1
     public int loadData(String filename) {
         // data = rcode, name, dom, floor, type, booked, price
