@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StudentTree {
+    
+    private static final String FILE_NAME = "resources/students.txt";
 
     TreeNode root;
 
@@ -66,7 +68,7 @@ public class StudentTree {
     }
 
     public void visit(TreeNode p) {
-        System.out.print(p + " ");
+        System.out.println(p);
     }
 
     public void preOrder(TreeNode p) {
@@ -458,10 +460,23 @@ public class StudentTree {
 
     }
 
+//    public void display() {
+//        System.out.println("-------------------------------------------------");
+//        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
+//        System.out.println("-------------------------------------------------");
+//        this.traverse();
+//    }
+//    
+    public void display(Student student) {
+        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
+        System.out.println("-------------------------------------------------");
+        System.out.println(student);
+    }
+    
     // 2.1
-    public void loadData(String filename) {
+    public void loadData() {
         int count = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -491,26 +506,29 @@ public class StudentTree {
             System.out.println("The tree is empty.");
             return;
         }
+        System.out.println("-------------------------------------------------");
+        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
+        System.out.println("-------------------------------------------------");
         preOrder(root);  // Duyệt cây và in ra
     }
 
     // 2.4
-    public void saveData(String filename) {
+    public void saveData() {
         // data = rcode, name, dom, floor, type, booked, price
-        loadData(filename);
+        loadData();
 
         if (this.isEmpty()) {
             System.out.println("No students found.");
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, false))) {
             saveDataInOrder(root, writer);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.format("Saved students to %s \n", filename);
+        System.out.format("Saved students to %s \n", FILE_NAME);
     }
 
     public void saveDataInOrder(TreeNode<Student> p, BufferedWriter writer) throws IOException {

@@ -231,11 +231,12 @@ public class Main {
             int choice;
             choice = Inputter.getInt(0, STUDENT_OPTIONS.length);
             System.out.println("");
+            String scode, sname;
             switch (choice) {
                 case 0:
                     return;
                 case 1:
-                    studentTree.loadData("students.txt");
+                    studentTree.loadData();
                     break;
                 case 2:
                     System.out.println("Please insert infomation for the new room:");
@@ -243,7 +244,7 @@ public class Main {
                     // get scode
                     System.out.print("Student's Code: ");
                     while (true) {
-                        String scode = Inputter.getString();
+                        scode = Inputter.getString();
                         if (studentTree.searchByCode(scode) == null) {
                             break;
                         } else {
@@ -252,7 +253,7 @@ public class Main {
                     }
 
                     // get sname
-                    String sname = Inputter.getName("Student's Name: ");
+                    sname = Inputter.getName("Student's Name: ");
 
                     // get bYear
                     System.out.print("Student's BirthYear: ");
@@ -267,16 +268,16 @@ public class Main {
                     studentTree.displayByPreOrder();
                     break;
                 case 4: // Save Data in-order
-                    studentTree.saveData("students.txt");
+                    studentTree.saveData();
                     break;
                 case 5: // search by scode
                     System.out.print("Input Student code: ");
-                    String scode = Inputter.getString();
+                    scode = Inputter.getString();
                     Student s = studentTree.searchByCode(scode);
 
                     if (s != null) {
                         System.out.println("Student found: ");
-                        studentTree.searchByCode(scode);
+                        studentTree.display(s);
                     } else {
                         System.out.println("Student with code " + scode + " not found.");
                     }
