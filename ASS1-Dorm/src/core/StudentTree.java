@@ -510,18 +510,11 @@ private void searchByNameRecursive(TreeNode<Student> node, String sname) {
 }
     
     // 2.8
-    public void searchStudentRoom(String scode) {
-         // Search for the student by student code
-    Node<Student> studentNode = searchByCode(scode);
-    
-    
-    if (studentNode != null) {
-        // Access the bookedRoom property directly
-        Room bookedRoom = studentNode.getInfo().bookedRoom; // Direct access
-        
-        // Check if the student has booked a room
+   public void searchStudentRoom(String scode) {
+    Student student = searchByCode(scode);
+    if (student != null) {
+        Room bookedRoom = student.getBookedRoom();  // Truy cập trực tiếp bookedRoom
         if (bookedRoom != null) {
-            // Print out the room code and room name
             System.out.println("Student with code " + scode + " has booked the room:");
             System.out.println("Room code: " + bookedRoom.getRcode());
             System.out.println("Room name: " + bookedRoom.getName());
@@ -531,7 +524,6 @@ private void searchByNameRecursive(TreeNode<Student> node, String sname) {
     } else {
         System.out.println("Student with code " + scode + " not found.");
     }
-
 
 }
     
