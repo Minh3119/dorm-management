@@ -206,7 +206,7 @@ public class Main {
 
                     if (room != null) {
                         System.out.println("Room found: ");
-                        roomTree.display();
+                        System.out.println(room);
                     } else {
                         System.out.println("Room with name " + rname + " not found.");
                     }
@@ -317,7 +317,7 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    bookingList.loadData("booking.txt");
+                    bookingList.loadData("resources/bookings.txt");
                     break;
                 case 2:
                     System.out.println("Please insert infomation for the new booking: ");
