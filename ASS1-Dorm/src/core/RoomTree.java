@@ -609,21 +609,7 @@ public class RoomTree {
     // deleteByCopying(searchByCode(rcode));
 
     // 1.7
-    public void sortByCode() {
-        // sort the list based on rcode ASCENDING
-        TreeNode<Room> p = head;
-        TreeNode<Room> q;
-        while (p != null) {
-            q = p.getNext();
-            while (q != null) {
-                if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) > 0) {
-                    swap(p, q);
-                }
-                q = q.getNext();
-            }
-            p = p.getNext();
-        }
-    }
+    // deleteByMerging(searchByCode(rcode));
 
     // 1.8
     // just use balance()
