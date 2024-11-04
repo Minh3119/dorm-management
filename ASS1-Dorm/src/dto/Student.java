@@ -32,7 +32,10 @@ public class Student {
     public void setByear(int byear) {
         this.byear = byear;
     }
-    
+     public int compareScode(Student s2) {
+        // so sanh rcode
+        return scode.compareTo(s2.getScode());
+    }
     @Override
     public String toString() {
         return String.format("%-10s | %-20s | %-8s",scode, name, byear);
