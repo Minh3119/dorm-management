@@ -21,7 +21,7 @@ public class MyLinkedList<T> {
         tail = null;
     }
 
-    protected void addLast(T x) {
+    public void addLast(T x) {
         Node<T> newNode = new Node(x);
 
         if (isEmpty()) {
@@ -52,7 +52,7 @@ public class MyLinkedList<T> {
         System.out.println("");
     }
 
-    protected void addFirst(T x) {
+    public void addFirst(T x) {
         Node<T> newNode = new Node(x);
 
         if (isEmpty()) {

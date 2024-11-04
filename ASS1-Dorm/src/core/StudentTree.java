@@ -486,12 +486,12 @@ public class StudentTree {
     }
 
     // 2.3
-    public void display() {
+    public void displayByPreOrder() {
         if (isEmpty()) {
             System.out.println("The tree is empty.");
             return;
         }
-        inOrder(root);  // Duyệt cây và in ra
+        preOrder(root);  // Duyệt cây và in ra
     }
 
     // 2.4
@@ -561,7 +561,7 @@ public class StudentTree {
             return;
         }
         if (node.info.getName().equalsIgnoreCase(sname)) {
-            System.out.println(node.info);
+            System.out.println("Student found: " + node.info);
         }
         searchByNameRecursive(node.left, sname);
         searchByNameRecursive(node.right, sname);

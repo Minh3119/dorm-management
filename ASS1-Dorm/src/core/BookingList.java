@@ -143,7 +143,7 @@ public class BookingList extends MyLinkedList<Booking> {
     }
     
     // 3.6
-    public void leaveRoom(String rcode, String scode, RoomList roomList) {
+    public void leaveRoom(String rcode, String scode, RoomTree roomTree) {
         Node<Booking> current = head;
         while (current != null) {
             Booking booking = current.getInfo();
@@ -151,7 +151,7 @@ public class BookingList extends MyLinkedList<Booking> {
                 booking.setState(0);
                 booking.setBookDate(null);
                 booking.setLeaveDate(new Date());
-                roomList.searchByCode(rcode).decreaseBooked();
+                roomTree.searchByCode(rcode).decreaseBooked();
                 System.out.println("Booking updated: " + booking);
                 return;
             }
