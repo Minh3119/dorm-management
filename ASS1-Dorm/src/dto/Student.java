@@ -5,7 +5,7 @@
 package dto;
 
 public class Student {
-    
+
     private String scode;
     private String name;
     private int byear;      // student's birth year, used to check age >= 18
@@ -13,16 +13,18 @@ public class Student {
 
     public Student() {
     }
-    
+
     public Student(String scode, String name, int byear) {
         this.scode = scode;
         this.name = name;
         this.byear = byear;
-        this.bookedRoom=null;
+        this.bookedRoom = null;
     }
-public Room getBookedRoom() {
+
+    public Room getBookedRoom() {
         return bookedRoom;
     }
+
     public String getScode() {
         return scode;
     }
@@ -38,13 +40,15 @@ public Room getBookedRoom() {
     public void setByear(int byear) {
         this.byear = byear;
     }
-     public int compareScode(Student s2) {
+
+    public int compareScode(Student s2) {
         // so sanh scode
         return scode.compareTo(s2.getScode());
     }
+
     @Override
     public String toString() {
-        return String.format("%-10s | %-20s | %-8s",scode, name, byear);
+        return String.format("%-10s | %-20s | %-8s", scode, name, byear);
     }
-    
+
 }

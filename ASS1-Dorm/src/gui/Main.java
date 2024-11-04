@@ -113,12 +113,14 @@ public class Main {
             RoomType roomType;
             double price;
             Room room;
+            int count;
 
             switch (choice) {
                 case 0:
                     return;
                 case 1:
-                    roomTree.loadData();
+                    count = roomTree.loadData();
+                    System.out.format("Loaded %d rooms.\n", count);
                     break;
                 case 2:
                     // ask for room information here, then .insert()
@@ -199,7 +201,7 @@ public class Main {
                     roomTree.breadth();
                     break;
                 case 10:
-                    int count = roomTree.count();
+                    count = roomTree.count();
                     System.out.println("Found " + count + " rooms.");
                     break;
                 case 11:
@@ -235,11 +237,14 @@ public class Main {
             choice = Inputter.getInt(0, STUDENT_OPTIONS.length);
             System.out.println("");
             String scode, sname;
+            int count;
+            
             switch (choice) {
                 case 0:
                     return;
                 case 1:
-                    studentTree.loadData();
+                    count = studentTree.loadData();
+                    System.out.format("Loaded %d students.\n", count);
                     break;
                 case 2:
                     System.out.println("Please insert infomation for the new room:");
@@ -314,6 +319,7 @@ public class Main {
             menu.display();
 
             int choice;
+            int count;
             choice = Inputter.getInt(0, BOOKING_OPTIONS.length);
             System.out.println("");
             
@@ -324,7 +330,8 @@ public class Main {
                 case 0:
                     return;
                 case 1:
-                    bookingList.loadData();
+                    count = bookingList.loadData();
+                    System.out.println("Loaded " + count + " bookings.");
                     break;
                 case 2:
                     System.out.println("Please insert infomation for the new booking:");

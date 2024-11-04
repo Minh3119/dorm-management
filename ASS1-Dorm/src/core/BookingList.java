@@ -28,7 +28,7 @@ public class BookingList extends MyLinkedList<Booking> {
     }
     
     // 3.1
-    public void loadData() {
+    public int loadData() {
         // data = rcode, scode, bdate, ldate, state
         int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -54,7 +54,7 @@ public class BookingList extends MyLinkedList<Booking> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Loaded " + count + " bookings.");
+        return count;
     }
     
     public void bookRoom(Booking booking) {

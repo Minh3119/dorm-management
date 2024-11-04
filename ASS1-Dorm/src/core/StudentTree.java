@@ -474,7 +474,7 @@ public class StudentTree {
     }
 
     // 2.1
-    public void loadData() {
+    public int loadData() {
         int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
@@ -491,7 +491,7 @@ public class StudentTree {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.format("Loaded %d students.\n", count);
+        return count;
     }
 
     // 2.2
