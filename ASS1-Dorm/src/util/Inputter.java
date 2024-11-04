@@ -21,7 +21,30 @@ public class Inputter {
         }
         return null;
     }
+    
 
+    public static int checkBirthYear() {
+        boolean validInput = false;
+        int birthYear=0;
+        while (!validInput) {
+            System.out.print("Nhập năm sinh của bạn: ");
+            try {
+                birthYear = Integer.parseInt(scanner.nextLine());
+           
+                if ((2024 - birthYear) >= 18) {
+                    validInput = true;
+                } else {
+                    System.out.println("Bạn phải từ 18 tuổi trở lên. Vui lòng nhập lại.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Năm sinh không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
+
+        return birthYear;
+    }
+    
+    
     public static float getPrice() {
         while (true) {
             String s = scanner.nextLine();
