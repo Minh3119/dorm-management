@@ -640,10 +640,10 @@ public class RoomTree {
 
         if (comparison < 0) {
             // Search in the left subtree
-            return binarySearchCode(node.left, rname);
+            return binarySearchName(node.left, rname);
         } else if (comparison > 0) {
             // Search in the right subtree
-            return binarySearchCode(node.right, rname);
+            return binarySearchName(node.right, rname);
         } else {
             // Found the Room
             return node.info;
