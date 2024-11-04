@@ -75,7 +75,7 @@ public class RoomTree {
     }
 
     public void visit(TreeNode p) {
-        System.out.print(p + " ");
+        System.out.println(p);
     }
 
     public void preOrder(TreeNode p) {
@@ -125,7 +125,7 @@ public class RoomTree {
             if (p.right != null) {
                 q.enqueue(p.right);
             }
-            display(p.info);
+            System.out.println(p);
         }
     }
 

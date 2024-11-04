@@ -206,7 +206,7 @@ public class Main {
 
                     if (room != null) {
                         System.out.println("Room found: ");
-                        roomTree.display(room);
+                        roomTree.display();
                     } else {
                         System.out.println("Room with name " + rname + " not found.");
                     }
@@ -256,7 +256,7 @@ public class Main {
 
                     // get bYear
                     System.out.print("Student's BirthYear: ");
-                    int bYear = Inputter.checkBirthYear();
+                    int bYear = Inputter.getInt(1950, 2005);
 
                     // get booked Room
                     //....
@@ -337,7 +337,7 @@ public class Main {
                     bookingList.saveData("booking.txt");
                     break;
                 case 5: // HÀM SAI
-                    bookingList.sort();
+                    //bookingList.sort();
                     break;
                 case 6:
                     // get rcode
