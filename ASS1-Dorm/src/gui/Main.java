@@ -351,7 +351,7 @@ public class Main {
                     bookingList.saveData("booking.txt");
                     break;
                 case 5: // HÀM SAI
-                    //bookingList.sort();
+                    bookingList.sortByRcodeAndScodeDESC();
                     break;
                 case 6:
                     // get rcode

@@ -109,22 +109,31 @@ public class BookingList extends MyLinkedList<Booking> {
     }
     
     // 3.5
-    public void sortRoomCodeDESC() {
-        // sort + display result
-        // rcode: descending, then scode descending
-        Node<Booking> p = head;
-        Node<Booking> q;
-        while (p != null) {
-            q = p.getNext();
-            while (q != null) {
-                if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) < 0) {
+public void sortByRcodeAndScodeDESC() {
+    // Sắp xếp theo rcode giảm dần, sau đó theo scode giảm dần
+    Node<Booking> p = head;
+    Node<Booking> q;
+
+    while (p != null) {
+        q = p.getNext();
+        while (q != null) {
+            // So sánh theo rcode trước
+            if (p.getInfo().getRcode().compareTo(q.getInfo().getRcode()) < 0) {
+                swap(p, q);
+            } 
+            // Nếu rcode bằng nhau, so sánh theo scode
+            else if (p.getInfo().getRcode().equals(q.getInfo().getRcode())) {
+                if (p.getInfo().getScode().compareTo(q.getInfo().getScode()) < 0) {
                     swap(p, q);
                 }
-                q = q.getNext();
             }
-            p = p.getNext();
+            q = q.getNext();
         }
+        p = p.getNext();
     }
+    System.out.println("Bookings sorted by rcode and scode in descending order.");
+}
+
     
     public void sortStudentCodeDESC() {
         // sort + display result
