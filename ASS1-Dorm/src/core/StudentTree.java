@@ -498,27 +498,28 @@ public class StudentTree {
     public void saveData(String filename) {
         // data = rcode, name, dom, floor, type, booked, price
         loadData(filename);
-        
+
         if (this.isEmpty()) {
             System.out.println("No students found.");
             return;
         }
-        
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, false))) {
             saveDataInOrder(root, writer);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.format("Saved students to %s \n", filename);
     }
+
     public void saveDataInOrder(TreeNode<Student> p, BufferedWriter writer) throws IOException {
         if (p == null) {
             return;
         }
-        
+
         inOrder(p.left);
-        
+
         // save data in Node p
         String[] lineComponents = new String[3];
         Student s = p.info;
@@ -530,7 +531,7 @@ public class StudentTree {
         writer.write(line);
         writer.newLine();
         // -------------------
-        
+
         inOrder(p.right);
     }
 
@@ -568,26 +569,19 @@ public class StudentTree {
 
     // 2.8
     public void searchStudentRoom(String scode) {
-        // Search for the student by student code
-        TreeNode<Student> studentNode = searchByCode(scode);
-
-        if (studentNode != null) {
-            // Access the bookedRoom property directly
-            Room bookedRoom = studentNode.info.bookedRoom; // Direct access
-
-            // Check if the student has booked a room
+        Student student = searchByCode(scode);
+        if (student != null) {
+            Room bookedRoom = student.getBookedRoom();  // Truy cập trực tiếp bookedRoom
             if (bookedRoom != null) {
-                // Print out the room code and room name
                 System.out.println("Student with code " + scode + " has booked the room:");
                 System.out.println("Room code: " + bookedRoom.getRcode());
                 System.out.println("Room name: " + bookedRoom.getName());
+
             } else {
-                System.out.println("Student with code " + scode + " has not booked any room.");
+                System.out.println("Student with code " + scode + " not found.");
             }
-        } else {
-            System.out.println("Student with code " + scode + " not found.");
+
         }
 
     }
-
 }
