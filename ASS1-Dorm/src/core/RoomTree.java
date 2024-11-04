@@ -149,7 +149,7 @@ public class RoomTree {
 
         // check if found x
         if (deleteNode == null) {
-            System.out.println("The key " + x + "does not exist, no deletion");
+            System.out.println("The Room " + x + "does not exist, no deletion");
             return;
         }
 
@@ -263,7 +263,7 @@ public class RoomTree {
 
         // check if found x
         if (deleteNode == null) {
-            System.out.println("The key " + x + "does not exist, no deletion");;
+            System.out.println("The room " + x + "does not exist, no deletion");;
             return;
         }
 
@@ -473,29 +473,22 @@ public class RoomTree {
         }
     }
     
-    public Room binarySearch(String rcode) {
-        return binarySearch(root, rcode);
+    public int count() {
+        return count(root);
     }
 
-    private Room binarySearch(TreeNode<Room> node, String rcode) {
+    private int count(TreeNode<Room> node) {
         if (node == null) {
-            return null; // Base case: not found
+            return 0; // Base case: if the node is null, return 0
         }
 
-        // Compare the rcode of the current node's Room with the search rcode
-        int comparison = rcode.compareTo(node.info.getRcode());
-
-        if (comparison < 0) {
-            // Search in the left subtree
-            return binarySearch(node.left, rcode);
-        } else if (comparison > 0) {
-            // Search in the right subtree
-            return binarySearch(node.right, rcode);
-        } else {
-            // Found the Room
-            return node.info;
-        }
+        // Count this node (1) plus the count of left and right subtrees
+        return 1 + count(node.left) + count(node.right);
     }
+    
+    
+    
+    
     
     // 1.1
     public int loadData(String filename) {
@@ -588,26 +581,31 @@ public class RoomTree {
     
     // 1.5
     public Room searchByCode(String rcode) {
-        TreeNode<Room> p = root;
-        while (p != null) {
-            if (p.info.getRcode().equals(rcode)) {
-                return p.info;
-            }
-            p = p.getNext();
+        return binarySearchCode(root, rcode);
+    }
+    private Room binarySearchCode(TreeNode<Room> node, String rcode) {
+        if (node == null) {
+            return null;
         }
-        return null;
+
+        // Compare the rcode of the current node's Room with the search rcode
+        int comparison = rcode.compareTo(node.info.getRcode());
+
+        if (comparison < 0) {
+            // Search in the left subtree
+            return binarySearchCode(node.left, rcode);
+        } else if (comparison > 0) {
+            // Search in the right subtree
+            return binarySearchCode(node.right, rcode);
+        } else {
+            // Found the Room
+            return node.info;
+        }
     }
     
+    
     // 1.6
-    public void deleteByCode(String rcode) {
-        TreeNode<Room> p = searchNodeByCode(rcode);
-        if (p != null) {
-            this.remove(p);
-            System.out.println("Room with code " + rcode + " has been deleted.");
-        } else {
-            System.out.println("Room with code " + rcode + " not found.");
-        }
-    }
+    // deleteByCopying(searchByCode(rcode));
 
     // 1.7
     public void sortByCode() {
@@ -627,14 +625,10 @@ public class RoomTree {
     }
 
     // 1.8
-    public void addToBeginning(Room room) {
-        addFirst(room);
-    }
+    // just use balance()
 
     // 1.9
-    public void addBeforeIndex(int k, Room room) {
-        insert(k, room);
-    }
+    // just use breadth()
 
     // 1.10 
     public void deleteByIndex(int index) {
@@ -642,27 +636,29 @@ public class RoomTree {
     }
 
     // 1.11
-    public void searchByName(String name) {
-        TreeNode<Room> current = head;
-        TreeNode<Room> firstMatch = null;  // Lưu node đầu tiên tìm thấy
-
-        while (current != null) {   //pressing nguyên sàn 
-            if (current.getInfo().getName().equals(name)) {
-                if (firstMatch == null) {
-                    display(current.getInfo());
-                    firstMatch = current;
-                } else {
-                    System.out.println(current.getInfo());
-                }
-            }
-            current = current.getNext();
-        }
-
-        if (firstMatch == null) {
-            System.out.println("No rooms found with name: " + name);
-        }
-
+    public Room searchByName(String rname) {
+        return binarySearchName(root, rname);
     }
+    private Room binarySearchName(TreeNode<Room> node, String rname) {
+        if (node == null) {
+            return null;
+        }
+
+        // Compare the rcode of the current node's Room with the search rcode
+        int comparison = rname.compareTo(node.info.getName());
+
+        if (comparison < 0) {
+            // Search in the left subtree
+            return binarySearchCode(node.left, rname);
+        } else if (comparison > 0) {
+            // Search in the right subtree
+            return binarySearchCode(node.right, rname);
+        } else {
+            // Found the Room
+            return node.info;
+        }
+    }
+    
     
     // 1.12
 }
