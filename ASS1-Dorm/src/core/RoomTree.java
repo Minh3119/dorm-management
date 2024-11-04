@@ -494,7 +494,7 @@ public class RoomTree {
     
     
     // 1.1
-    public int loadData() {
+    public void loadData() {
         // data = rcode, name, dom, floor, type, booked, price
         int count = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
@@ -516,7 +516,7 @@ public class RoomTree {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return count;
+        System.out.format("Loaded %d rooms.\n", count);
     }
 
     // 1.2
@@ -555,6 +555,7 @@ public class RoomTree {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         System.out.format("Saved rooms to %s \n", FILE_NAME);
     }
     

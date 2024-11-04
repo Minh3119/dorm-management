@@ -33,7 +33,7 @@ public class Student {
         this.byear = byear;
     }
      public int compareScode(Student s2) {
-        // so sanh rcode
+        // so sanh scode
         return scode.compareTo(s2.getScode());
     }
     @Override
