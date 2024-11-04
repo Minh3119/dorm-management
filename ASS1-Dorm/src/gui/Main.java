@@ -7,6 +7,7 @@ package gui;
 import core.BookingList;
 import core.RoomTree;
 import core.StudentTree;
+import dto.Booking;
 import dto.Room;
 import dto.Student;
 import dto.RoomType;
@@ -320,15 +321,27 @@ public class Main {
                     bookingList.loadData("resources/bookings.txt");
                     break;
                 case 2:
+                    Room room = new Room();
+                    Student student = new Student();
+                    Booking booking = new Booking();
                     System.out.println("Please insert infomation for the new booking: ");
 
                     // get rcode
                     System.out.print("Room Code: ");
                     String rcode = Inputter.getString();
                     //.....
-
-                    // get sname
-                    String scode = Inputter.getName("Student Code ");
+                    System.out.print("Student Code: ");
+                    String scode = Inputter.getString();
+                    if((room.getRcode().toLowerCase().equalsIgnoreCase(rcode))&&(
+                    student.getScode().toLowerCase().equalsIgnoreCase(scode))){
+                        if(room.getBeds()>0&&student.getBookedRoom()==null){
+                            booking.setState(1);
+                            booking.setBookDate("04/11/2024"); // can chinh sua thanh ngay hom nay
+                            booking.setLeaveDate(null);
+                            bookingList.addFirst(booking);
+                            roomTree.count()+=1;
+                        }
+                    }
 
                     //....
                 case 3:

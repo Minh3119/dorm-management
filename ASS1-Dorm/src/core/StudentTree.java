@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StudentTree {
-    
+
     private static final String FILE_NAME = "resources/students.txt";
 
     TreeNode root;
@@ -472,7 +472,7 @@ public class StudentTree {
         System.out.println("-------------------------------------------------");
         System.out.println(student);
     }
-    
+
     // 2.1
     public void loadData() {
         int count = 0;
@@ -594,12 +594,12 @@ public class StudentTree {
                 System.out.println("Student with code " + scode + " has booked the room:");
                 System.out.println("Room code: " + bookedRoom.getRcode());
                 System.out.println("Room name: " + bookedRoom.getName());
-
             } else {
                 System.out.println("Student with code " + scode + " not found.");
             }
 
+        } else {
+            System.out.println("Student with code " + scode + " not found.");
         }
-
     }
 }
