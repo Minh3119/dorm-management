@@ -548,7 +548,7 @@ public class RoomTree {
     // 1.4
     public void saveData() {
         // data = rcode, name, dom, floor, type, booked, price
-        loadData();
+//        loadData();
 
         if (this.isEmpty()) {
             System.out.println("No rooms found.");
