@@ -226,7 +226,7 @@ public class StudentTree {
         deleteNode = root;
         parentOfDeleteNode = null;
         while (deleteNode != null) {
-            if (deleteNode.info.compareScode(x) == 0) {
+            if (deleteNode.info.compareScode(x) == 0) { // found the node
                 break;
             }
 
@@ -240,7 +240,7 @@ public class StudentTree {
         }
 
         if (deleteNode == null) {
-            System.out.println("The key " + x + "does not exist, no deletion");
+            System.out.println("The student with scode " + x.getScode() + "does not exist, no deletion");
             return;
         }
 
@@ -505,7 +505,7 @@ public class StudentTree {
     // 2.4
     public void saveData() {
         // data = scode, name, byear
-        loadData();
+//        loadData();
 
         if (this.isEmpty()) {
             System.out.println("No students found.");

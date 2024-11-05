@@ -7,4 +7,3 @@
 011,Jeff Bezos,1964
 012,Mark Zuckerberg,1984
 013,Bill Gates,1955
-014,null,1999
