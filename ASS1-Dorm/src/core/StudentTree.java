@@ -1,8 +1,9 @@
 package core;
 
 import base.MyQueue;
+import base.Node;
 import base.TreeNode;
-import dto.Room;
+import dto.Booking;
 import dto.Student;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -576,20 +577,21 @@ public class StudentTree {
     }
 
     // 2.8
-    public void searchStudentRoom(String scode) {
-        Student student = searchByCode(scode);
-        if (student != null) {
-            Room bookedRoom = student.getBookedRoom();  // Truy cập trực tiếp bookedRoom
-            if (bookedRoom != null) {
-                System.out.println("Student with code " + scode + " has booked the room:");
-                System.out.println("Room code: " + bookedRoom.getRcode());
-                System.out.println("Room name: " + bookedRoom.getName());
-            } else {
-                System.out.println("Student with code " + scode + " not found.");
-            }
+    public void searchStudentRoom(String scode, BookingList bookingList) {
+        // Search for the student by student code        
+        boolean found = false;
+        Node<Booking> current = bookingList.head;
+        while (current != null) {
+            Booking booking = current.getInfo();
 
-        } else {
-            System.out.println("Student with code " + scode + " not found.");
+            if (booking.getScode().equals(scode) && booking.getState() == 1) {
+                System.out.println("Student with code " + scode + " has booked room with room code: " + booking.getRcode());
+                found = true;
+            }
+            current = current.getNext();
+        }
+        if (!found) {
+            System.out.println("Student with code " + scode + " has not booked any room.");
         }
     }
 }

@@ -301,7 +301,7 @@ public class Main {
                 case 8:
                     System.out.print("Input Student code: ");
                     scode = Inputter.getString();
-                    studentTree.searchStudentRoom(scode);
+                    studentTree.searchStudentRoom(scode, bookingList);
                     break;
             }
         }
