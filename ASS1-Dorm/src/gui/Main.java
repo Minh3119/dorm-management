@@ -11,7 +11,6 @@ import dto.Booking;
 import dto.Room;
 import dto.Student;
 import dto.RoomType;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import util.Inputter;
@@ -267,10 +266,8 @@ public class Main {
                     System.out.print("Student's BirthYear: ");
                     int bYear = Inputter.getInt(1950, 2005);
 
-                    // get booked Room
-                    //....
                     Student newStudent = new Student(scode, sname, bYear);
-                    studentTree.addToEnd(newStudent);
+                    studentTree.insert(newStudent);
                     break;
                 case 3: //Display data by pre-order traversal
                     studentTree.displayByPreOrder();

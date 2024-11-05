@@ -460,13 +460,6 @@ public class StudentTree {
 
     }
 
-//    public void display() {
-//        System.out.println("-------------------------------------------------");
-//        System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
-//        System.out.println("-------------------------------------------------");
-//        this.traverse();
-//    }
-//    
     public void display(Student student) {
         System.out.format("%-10s | %-20s | %-8s\n", "scode", "name", "byear");
         System.out.println("-------------------------------------------------");
@@ -495,10 +488,7 @@ public class StudentTree {
     }
 
     // 2.2
-    public void addToEnd(Student student) {
-
-        insert(student);
-    }
+    // just use insert()
 
     // 2.3
     public void displayByPreOrder() {
@@ -514,7 +504,7 @@ public class StudentTree {
 
     // 2.4
     public void saveData() {
-        // data = rcode, name, dom, floor, type, booked, price
+        // data = scode, name, byear
         loadData();
 
         if (this.isEmpty()) {
@@ -536,7 +526,7 @@ public class StudentTree {
             return;
         }
 
-        inOrder(p.left);
+        saveDataInOrder(p.left, writer);
 
         // save data in Node p
         String[] lineComponents = new String[3];
@@ -550,7 +540,7 @@ public class StudentTree {
         writer.newLine();
         // -------------------
 
-        inOrder(p.right);
+        saveDataInOrder(p.right, writer);
     }
 
     //2.5
